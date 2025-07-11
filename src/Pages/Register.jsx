@@ -4,18 +4,25 @@ import registerLottie from "../assets/Animation - 1751984917319.json";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Register = () => {
-  const { createUser } = use(AuthContext);
+  const { user, createUser } = use(AuthContext);
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const dataObject = Object.fromEntries(formData.entries());
+    dataObject.role = "member";
     const { email, password } = dataObject;
+
     createUser(email, password)
       .then((data) => {
+        axios
+          .post("http://localhost:3000/users", dataObject)
+          .then((data) => console.log(data))
+          .catch((error) => console.log(error));
         Swal.fire({
           position: "center",
           icon: "success",
