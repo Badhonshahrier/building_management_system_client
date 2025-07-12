@@ -7,6 +7,10 @@ import Apartment from "../Components/Apartment";
 import Dashboard from "../Components/Dashboard";
 import MyProfile from "../Components/MyProfile";
 import ManageMembers from "../Components/Dashboard/ManageMembers";
+import MakeAnnouncement from "../Components/Dashboard/MakeAnnouncement";
+import AgreementRequests from "../Components/Dashboard/AgreementRequests";
+import ManageCoupons from "../Components/Dashboard/ManageCoupons";
+import MakePayment from "../Components/Dashboard/MakePayment";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +44,22 @@ export const router = createBrowserRouter([
           {
             path: "managemembers",
             Component: ManageMembers,
+          },
+          {
+            path:"makeannouncement",
+            Component:MakeAnnouncement
+          },
+          {
+            path:"agreementrequests",
+            Component:AgreementRequests
+          },
+          {
+            path:"managecoupons",
+            Component:ManageCoupons,
+          },
+          {
+            path:"makepayment",
+            Component:MakePayment,
           },
         ],
       },

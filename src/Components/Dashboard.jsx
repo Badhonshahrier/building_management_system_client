@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from "react";
-import { Link, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
 import {
   FaUserCog,
   FaUsers,
@@ -36,7 +36,7 @@ const Dashboard = () => {
           {role === "user" && (
             <>
               <li>
-                <Link to="/dashboard/myprofile">My Profile</Link>
+                <NavLink className={isActive=>isActive?"bg-amber-300":""} to="/dashboard/myprofile">My Profile</NavLink>
               </li>
               <li>
                 <Link to="/dashboard/announcements">Announcements</Link>
@@ -49,7 +49,7 @@ const Dashboard = () => {
                 <Link to="/dashboard/myprofile">My Profile</Link>
               </li>
               <li>
-                <Link to="/dashboard/make-payment">Make Payment</Link>
+                <Link to="/dashboard/makepayment">Make Payment</Link>
               </li>
               <li>
                 <Link to="/dashboard/payment-history">Payment History</Link>
@@ -65,18 +65,18 @@ const Dashboard = () => {
                 <Link to="/dashboard/admin-profile">Admin Profile</Link>
               </li>
               <li>
-                <Link to="/dashboard/managemembers">Manage Members</Link>
+                <NavLink className={isActive=>isActive?"bg-amber-300":""} to="/dashboard/managemembers">Manage Members</NavLink>
               </li>
               <li>
-                <Link to="/dashboard/make-announcement">Make Announcement</Link>
+                <NavLink className={isActive=>isActive?"bg-amber-300":""} to="/dashboard/makeannouncement">Make Announcement</NavLink>
               </li>
               <li>
-                <Link to="/dashboard/agreement-requests">
+                <NavLink className={isActive=>isActive?"bg-amber-300":""} to="/dashboard/agreementrequests">
                   Agreement Requests
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/dashboard/manage-coupons">Manage Coupons</Link>
+                <NavLink className={isActive=>user && isActive?"bg-amber-300":""} to="/dashboard/managecoupons">Manage Coupons</NavLink>
               </li>
             </>
           )}

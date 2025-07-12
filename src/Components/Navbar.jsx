@@ -89,6 +89,7 @@ const Navbar = () => {
                 <li>
                   <Link to="/dashboard/myprofile">
                     <button
+                    className="font-bold mb-6"
                       onClick={() => {
                         const drawerToggle =
                           document.getElementById("my-drawer");
@@ -102,7 +103,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <button onClick={handleLogout}>Logout</button>
+                  <button className="btn bg-green-400" onClick={handleLogout}>Logout</button>
                 </li>
               </ul>
             </div>

@@ -7,33 +7,37 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 const Register = () => {
-  const { user, createUser } = use(AuthContext);
+  const { user, createUser, userProfile } = use(AuthContext);
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const dataObject = Object.fromEntries(formData.entries());
-    dataObject.role = "member";
-    const { email, password } = dataObject;
+    dataObject.role = "user";
+    const { name, photoURL, email, password } = dataObject;
 
-    createUser(email, password)
-      .then((data) => {
-        axios
-          .post("http://localhost:3000/users", dataObject)
-          .then((data) => console.log(data))
-          .catch((error) => console.log(error));
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "You have been successfully registered",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-        navigate("/");
-        console.log(data.user);
+    createUser(email, password).then((result) => {
+      userProfile({
+        displayName: name,
+        photoURL: photoURL,
       })
-      .catch((error) => console.log(error));
+        .then(() => {
+          axios
+            .post("http://localhost:3000/users", dataObject)
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error));
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "You have been successfully registered",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          navigate("/");
+        })
+        .catch((error) => console.log(error));
+    });
   };
 
   return (
@@ -102,7 +106,6 @@ const Register = () => {
         </div>
       </div>
 
-      {/* Lottie Animation */}
       <div className="hidden md:flex justify-center">
         <Lottie
           animationData={registerLottie}
