@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { FaSearch, FaBuilding, FaRegMoneyBillAlt } from "react-icons/fa";
+import { MdApartment } from "react-icons/md";
+import { GiStairs, GiModernCity } from "react-icons/gi";
 
 const Apartment = () => {
   const { user } = useContext(AuthContext);
@@ -8,29 +11,25 @@ const Apartment = () => {
   const [searchRent, setSearchRent] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 6;
-  const filteredApartments = apartInfo.filter((apt) =>
-  searchRent ? apt.rent <= parseInt(searchRent) : true
-);
-
-  const numberOfPages = Math.ceil(apartInfo.length / itemsPerPage);
-  const pages = [...Array(numberOfPages).keys()];
-  const dataToDisplay = filteredApartments;
-
-const displayedApartments = dataToDisplay.slice(
-  currentPage * itemsPerPage,
-  currentPage * itemsPerPage + itemsPerPage
-);
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/apartinfo")
-      .then((res) => {
-        setApartInfo(res.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      .then((res) => setApartInfo(res.data))
+      .catch((error) => console.error(error));
   }, []);
+
+  const filteredApartments = apartInfo.filter((apt) =>
+    searchRent ? apt.rent <= parseInt(searchRent) : true
+  );
+
+  const numberOfPages = Math.ceil(filteredApartments.length / itemsPerPage);
+  const pages = [...Array(numberOfPages).keys()];
+
+  const displayedApartments = filteredApartments.slice(
+    currentPage * itemsPerPage,
+    currentPage * itemsPerPage + itemsPerPage
+  );
 
   const handleAgreement = (apartment) => {
     const agreementData = {
@@ -51,52 +50,65 @@ const displayedApartments = dataToDisplay.slice(
 
   return (
     <div className="mt-10">
-      <div className="flex justify-center">
+      {/* Search Box */}
+      <div className="flex justify-center items-center gap-2 mb-6 px-4">
         <input
           type="number"
-          name=""
           value={searchRent}
           onChange={(e) => setSearchRent(e.target.value)}
           placeholder="Search apartment by rent..."
           className="input input-bordered w-full max-w-md"
         />
-        <button type="submit" className="btn p-5 text-white bg-green-600">
-          Search
+        <button className="btn bg-green-600 hover:bg-green-700 text-white">
+          <FaSearch className="mr-1" /> Search
         </button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-6 px-6 py-10">
+
+      {/* Apartment Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-6 px-6 py-4">
         {displayedApartments.map((apt, index) => (
           <div
             key={index}
-            className="border p-4 rounded-xl shadow hover:shadow-lg transition-all duration-300"
+            className="border border-gray-200 p-5 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 bg-white"
           >
             <img
               src={apt.image}
               alt="Apartment"
-              className="w-full h-48 object-cover rounded-lg mb-4"
+              className="w-full h-52 object-cover rounded-lg mb-4"
             />
-            <h2 className="text-xl font-bold mb-2">
-              Apartment No: {apt.apartmentNo}
+            <h2 className="text-xl font-bold flex items-center gap-2 mb-1 text-green-700">
+              <MdApartment /> Apt No: {apt.apartmentNo}
             </h2>
-            <p>Floor: {apt.floor}</p>
-            <p>Block: {apt.block}</p>
-            <p>Rent: ৳{apt.rent}</p>
+            <p className="flex items-center gap-2 text-gray-600">
+              <GiStairs /> Floor: {apt.floor}
+            </p>
+            <p className="flex items-center gap-2 text-gray-600">
+              <GiModernCity /> Block: {apt.block}
+            </p>
+            <p className="flex items-center gap-2 text-gray-700 font-semibold mt-2">
+              <FaRegMoneyBillAlt /> Rent: <span className="text-green-700 font-bold">৳{apt.rent}</span>
+            </p>
             <button
               onClick={() => handleAgreement(apt)}
-              className="mt-4 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded"
+              className="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
             >
               Apply for Agreement
             </button>
           </div>
         ))}
       </div>
-      <div className="text-center space-x-2">
+
+      {/* Pagination */}
+      <div className="text-center space-x-2 my-6">
         {pages.map((page) => (
           <button
+            key={page}
             onClick={() => setCurrentPage(page)}
-            className={currentPage == page ? "btn bg-amber-400" : "btn"}
+            className={`btn px-4 py-2 text-white font-semibold ${
+              currentPage === page ? "bg-amber-500" : "bg-gray-400 hover:bg-gray-600"
+            } rounded`}
           >
-            {page}
+            {page + 1}
           </button>
         ))}
       </div>

@@ -11,6 +11,9 @@ import MakeAnnouncement from "../Components/Dashboard/MakeAnnouncement";
 import AgreementRequests from "../Components/Dashboard/AgreementRequests";
 import ManageCoupons from "../Components/Dashboard/ManageCoupons";
 import MakePayment from "../Components/Dashboard/MakePayment";
+import RentPayment from "../Components/RentPayment";
+import PrivateRoutes from "./PrivateRoute";
+import Announcement from "../Components/Announcement";
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +38,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        Component: Dashboard,
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
         children: [
           {
             path: "myprofile",
@@ -60,6 +63,14 @@ export const router = createBrowserRouter([
           {
             path:"makepayment",
             Component:MakePayment,
+          },
+          {
+            path:'payment/:id',
+            Component:RentPayment,
+          },
+          {
+            path:"announcement",
+            Component:Announcement,
           },
         ],
       },

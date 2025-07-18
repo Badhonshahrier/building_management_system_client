@@ -39,7 +39,7 @@ const Dashboard = () => {
                 <NavLink className={isActive=>isActive?"bg-amber-300":""} to="/dashboard/myprofile">My Profile</NavLink>
               </li>
               <li>
-                <Link to="/dashboard/announcements">Announcements</Link>
+                <Link to="/dashboard/announcement">Announcements</Link>
               </li>
             </>
           )}
@@ -55,14 +55,14 @@ const Dashboard = () => {
                 <Link to="/dashboard/payment-history">Payment History</Link>
               </li>
               <li>
-                <Link to="/dashboard/announcements">Announcements</Link>
+                <Link to="/dashboard/announcement">Announcements</Link>
               </li>
             </>
           )}
           {role === "admin" && (
             <>
               <li>
-                <Link to="/dashboard/admin-profile">Admin Profile</Link>
+                <Link to="/dashboard/myprofile">Admin Profile</Link>
               </li>
               <li>
                 <NavLink className={isActive=>isActive?"bg-amber-300":""} to="/dashboard/managemembers">Manage Members</NavLink>

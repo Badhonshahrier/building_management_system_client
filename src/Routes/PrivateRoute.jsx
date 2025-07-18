@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { Navigate } from "react-router";
+import { AuthContext } from "../Provider/AuthProvider";
 
-const PrivateRoute = () => {
+const PrivateRoutes = ({ children }) => {
+  const { user, loading } = useContext(AuthContext);
+  console.log(loading,user);
+  if (loading) {
     return (
-        <div>
-            this is private route
-        </div>
+      <div className="h-20 w-full text-center flex justify-center items-center">
+        <span className="loading loading-spinner text-success"></span>
+        <span className="loading loading-spinner text-warning"></span>
+        <span className="loading loading-spinner text-error"></span>
+      </div>
     );
+  }
+
+  if (!user) {
+    return <Navigate to="/login"></Navigate>;
+  }
+
+  return children;
 };
 
-export default PrivateRoute;
+export default PrivateRoutes;
