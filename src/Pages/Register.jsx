@@ -9,36 +9,66 @@ import axios from "axios";
 const Register = () => {
   const { user, createUser, userProfile } = use(AuthContext);
   const navigate = useNavigate();
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const dataObject = Object.fromEntries(formData.entries());
-    dataObject.role = "user";
-    const { name, photoURL, email, password } = dataObject;
+const handleRegister = (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const dataObject = Object.fromEntries(formData.entries());
+  dataObject.role = "user";
 
-    createUser(email, password).then((result) => {
-      userProfile({
-        displayName: name,
-        photoURL: photoURL,
-      })
+  const { name, photoURL, email, password } = dataObject;
+
+  if (password.length < 6) {
+    return Swal.fire({
+      icon: "error",
+      title: "Password Too Short",
+      text: "Password must be at least 6 characters long.",
+    });
+  }
+
+  if (!/[a-z]/.test(password)) {
+    return Swal.fire({
+      icon: "error",
+      title: "Missing Lowercase Letter",
+      text: "Password must contain at least one lowercase letter.",
+    });
+  }
+
+  if (!/[A-Z]/.test(password)) {
+    return Swal.fire({
+      icon: "error",
+      title: "Missing Uppercase Letter",
+      text: "Password must contain at least one uppercase letter.",
+    });
+  }
+  createUser(email, password)
+    .then(() => {
+      userProfile({ displayName: name, photoURL })
         .then(() => {
           axios
-            .post("http://localhost:3000/users", dataObject)
-            .then((data) => console.log(data))
-            .catch((error) => console.log(error));
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "You have been successfully registered",
-            showConfirmButton: false,
-            timer: 1000,
-          });
-          navigate("/");
+            .post("https://building-management-server-omega-drab.vercel.app/users", dataObject)
+            .then(() => {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "You have been successfully registered",
+                showConfirmButton: false,
+                timer: 1000,
+              });
+              navigate("/");
+            });
         })
         .catch((error) => console.log(error));
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: error.message,
+      });
     });
-  };
+};
+
 
   return (
     <div className="min-h-screen bg-base-200 flex flex-col md:flex-row items-center justify-center p-6">

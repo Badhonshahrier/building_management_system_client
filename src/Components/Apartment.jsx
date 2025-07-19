@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { FaSearch, FaBuilding, FaRegMoneyBillAlt } from "react-icons/fa";
 import { MdApartment } from "react-icons/md";
 import { GiStairs, GiModernCity } from "react-icons/gi";
+import Swal from "sweetalert2";
 
 const Apartment = () => {
   const { user } = useContext(AuthContext);
@@ -14,7 +15,7 @@ const Apartment = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/apartinfo")
+      .get("https://building-management-server-omega-drab.vercel.app/apartinfo")
       .then((res) => setApartInfo(res.data))
       .catch((error) => console.error(error));
   }, []);
@@ -43,8 +44,14 @@ const Apartment = () => {
     };
 
     axios
-      .post("http://localhost:3000/agreement", agreementData)
-      .then((res) => console.log(res.data))
+      .post(
+        "https://building-management-server-omega-drab.vercel.app/agreement",
+        agreementData
+      )
+      .then(
+        (res) => console.log(res.data),
+        Swal.fire("Successfully receive your agreement request")
+      )
       .catch((error) => console.log(error));
   };
 
@@ -86,7 +93,8 @@ const Apartment = () => {
               <GiModernCity /> Block: {apt.block}
             </p>
             <p className="flex items-center gap-2 text-gray-700 font-semibold mt-2">
-              <FaRegMoneyBillAlt /> Rent: <span className="text-green-700 font-bold">৳{apt.rent}</span>
+              <FaRegMoneyBillAlt /> Rent:{" "}
+              <span className="text-green-700 font-bold">৳{apt.rent}</span>
             </p>
             <button
               onClick={() => handleAgreement(apt)}
@@ -105,7 +113,9 @@ const Apartment = () => {
             key={page}
             onClick={() => setCurrentPage(page)}
             className={`btn px-4 py-2 text-white font-semibold ${
-              currentPage === page ? "bg-amber-500" : "bg-gray-400 hover:bg-gray-600"
+              currentPage === page
+                ? "bg-amber-500"
+                : "bg-gray-400 hover:bg-gray-600"
             } rounded`}
           >
             {page + 1}

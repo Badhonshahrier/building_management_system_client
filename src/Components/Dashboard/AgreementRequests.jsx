@@ -4,13 +4,13 @@ import React, { useEffect, useState } from "react";
 const AgreementRequests = () => {
   const [agreeReq, setAgreeReq] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/agreements")
+    fetch("https://building-management-server-omega-drab.vercel.app/agreements")
       .then((res) => res.json())
       .then((data) => setAgreeReq(data));
   }, []);
 
 const handleAccept = (id) => {
-  axios.patch(`http://localhost:3000/agreements/accept/${id}`)
+  axios.patch(`https://building-management-server-omega-drab.vercel.app/agreements/accept/${id}`)
     .then((res) => {
       const remaining = agreeReq.filter((item) => item._id !== id);
       setAgreeReq(remaining);
@@ -19,7 +19,7 @@ const handleAccept = (id) => {
 };
 
 const handleReject = (id) => {
-  axios.patch(`http://localhost:3000/agreements/reject/${id}`)
+  axios.patch(`https://building-management-server-omega-drab.vercel.app/agreements/reject/${id}`)
     .then((res) => {
       const remaining = agreeReq.filter((item) => item._id !== id);
       setAgreeReq(remaining);

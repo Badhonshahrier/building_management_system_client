@@ -7,13 +7,13 @@ const Coupon = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/addcoupons")
+      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
       .then((res) => setCoupons(res.data))
       .catch((err) => console.log(err));
   }, []);
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 my-10 bg-base-200 rounded-2xl max-w-7xl mx-auto">
       <h1 className="text-4xl font-bold text-center my-20 text-gray-600">
          Available Coupons
       </h1>

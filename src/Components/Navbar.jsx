@@ -26,12 +26,22 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink className="font-medium" to="/">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "font-bold text-blue-600 underline" : "font-bold"
+          }
+        >
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink className="font-medium" to="/apartment">
+        <NavLink
+          to="/apartment"
+          className={({ isActive }) =>
+            isActive ? "font-bold text-blue-600 underline M" : "font-bold"
+          }
+        >
           Apartment
         </NavLink>
       </li>
@@ -89,7 +99,7 @@ const Navbar = () => {
                 <li>
                   <Link to="/dashboard/myprofile">
                     <button
-                    className="font-bold mb-6"
+                      className="font-bold mb-6"
                       onClick={() => {
                         const drawerToggle =
                           document.getElementById("my-drawer");
@@ -103,7 +113,9 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <button className="btn bg-green-400" onClick={handleLogout}>Logout</button>
+                  <button className="btn bg-green-400" onClick={handleLogout}>
+                    Logout
+                  </button>
                 </li>
               </ul>
             </div>

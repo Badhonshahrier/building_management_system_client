@@ -7,7 +7,7 @@ const Announcement = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/announce")
+      .get("https://building-management-server-omega-drab.vercel.app/announce")
       .then((res) => setAnnounce(res.data))
       .catch((err) => console.log(err));
   }, []);

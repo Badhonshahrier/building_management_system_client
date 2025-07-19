@@ -1,11 +1,14 @@
 import React, { use, useEffect, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import {
-  FaUserCog,
-  FaUsers,
+  FaUser,
   FaBullhorn,
+  FaMoneyBill,
+  FaHistory,
+  FaUsers,
+  FaPlus,
   FaFileContract,
-  FaTags,
+  FaTicketAlt,
 } from "react-icons/fa";
 import { AuthContext } from "../Provider/AuthProvider";
 
@@ -14,7 +17,7 @@ const Dashboard = () => {
   const [role, setRole] = useState("");
   useEffect(() => {
   if (user?.email) {
-    fetch(`http://localhost:3000/users/role/${user.email}`)
+    fetch(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`)
       .then((res) => res.json())
       .then((data) => setRole(data.role))
       .catch((error) => console.log(error));
@@ -33,53 +36,133 @@ const Dashboard = () => {
       </div>
       <div className="drawer-side">
         <ul className="menu p-4 w-full h-full space-y-2 bg-base-200 font-medium">
-          {role === "user" && (
-            <>
-              <li>
-                <NavLink className={isActive=>isActive?"bg-amber-300":""} to="/dashboard/myprofile">My Profile</NavLink>
-              </li>
-              <li>
-                <Link to="/dashboard/announcement">Announcements</Link>
-              </li>
-            </>
-          )}
-          {role === "member" && (
-            <>
-              <li>
-                <Link to="/dashboard/myprofile">My Profile</Link>
-              </li>
-              <li>
-                <Link to="/dashboard/makepayment">Make Payment</Link>
-              </li>
-              <li>
-                <Link to="/dashboard/payment-history">Payment History</Link>
-              </li>
-              <li>
-                <Link to="/dashboard/announcement">Announcements</Link>
-              </li>
-            </>
-          )}
-          {role === "admin" && (
-            <>
-              <li>
-                <Link to="/dashboard/myprofile">Admin Profile</Link>
-              </li>
-              <li>
-                <NavLink className={isActive=>isActive?"bg-amber-300":""} to="/dashboard/managemembers">Manage Members</NavLink>
-              </li>
-              <li>
-                <NavLink className={isActive=>isActive?"bg-amber-300":""} to="/dashboard/makeannouncement">Make Announcement</NavLink>
-              </li>
-              <li>
-                <NavLink className={isActive=>isActive?"bg-amber-300":""} to="/dashboard/agreementrequests">
-                  Agreement Requests
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className={isActive=>user && isActive?"bg-amber-300":""} to="/dashboard/managecoupons">Manage Coupons</NavLink>
-              </li>
-            </>
-          )}
+ 
+
+{role === "user" && (
+  <>
+    <li>
+      <NavLink
+        to="/dashboard/myprofile"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaUser /> My Profile
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/dashboard/announcement"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaBullhorn /> Announcements
+      </NavLink>
+    </li>
+  </>
+)}
+
+{role === "member" && (
+  <>
+    <li>
+      <NavLink
+        to="/dashboard/myprofile"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaUser /> My Profile
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/dashboard/makepayment"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaMoneyBill /> Make Payment
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/dashboard/paymenthistory"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaHistory /> Payment History
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/dashboard/announcement"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaBullhorn /> Announcements
+      </NavLink>
+    </li>
+  </>
+)}
+
+{role === "admin" && (
+  <>
+    <li>
+      <NavLink
+        to="/dashboard/myprofile"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaUser /> Admin Profile
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/dashboard/managemembers"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaUsers /> Manage Members
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/dashboard/makeannouncement"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaPlus /> Make Announcement
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/dashboard/agreementrequests"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaFileContract /> Agreement Requests
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/dashboard/managecoupons"
+        className={({ isActive }) =>
+          isActive ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2" : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+        }
+      >
+        <FaTicketAlt /> Manage Coupons
+      </NavLink>
+    </li>
+  </>
+)}
+
         </ul>
       </div>
     </div>

@@ -14,6 +14,7 @@ import MakePayment from "../Components/Dashboard/MakePayment";
 import RentPayment from "../Components/RentPayment";
 import PrivateRoutes from "./PrivateRoute";
 import Announcement from "../Components/Announcement";
+import PaymentHistory from "../Components/Dashboard/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
             path:"announcement",
             Component:Announcement,
           },
+          {
+            path:'paymenthistory',
+            Component:PaymentHistory,
+          }
         ],
       },
     ],

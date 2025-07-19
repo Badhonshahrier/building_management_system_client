@@ -15,7 +15,7 @@ const MakePayment = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get("http://localhost:3000/agreements")
+        .get("https://building-management-server-omega-drab.vercel.app/agreements")
         .then((res) => {
           const myAgreement = res.data.find(
             (item) =>
@@ -26,11 +26,12 @@ const MakePayment = () => {
         .catch((error) => console.log(error));
     }
   }, [user?.email]);
+
   const handleApplyCoupon = () => {
     if (!couponCode) return;
 
     axios
-      .get("http://localhost:3000/addcoupons")
+      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
       .then((res) => {
         const matched = res.data.find(
           (c) => c.code.toLowerCase() === couponCode.toLowerCase()
@@ -41,6 +42,7 @@ const MakePayment = () => {
             "Coupon Applied",
             `You got ${matched.discountPercentage}% off!`,
             "success"
+
           );
         } else {
           setDiscount(0);
@@ -51,47 +53,27 @@ const MakePayment = () => {
         Swal.fire("Error", "Failed to apply coupon", "error");
       });
   };
+
   const discountedRent = agreement
     ? agreement.rent - (agreement.rent * discount) / 100
     : 0;
-  const handleStripeRedirect = async () => {
-  if (!agreement || !month) {
-    return Swal.fire("Error", "Please fill in all required fields", "error");
-  }
 
-  const paymentData = {
-    email: agreement.userEmail,
-    floor: agreement.floor,
-    block: agreement.block,
-    apartmentNo: agreement.apartmentNo,
-    originalRent: agreement.rent,
-    rent: discountedRent,
-    discountPercentage: discount,
-    couponCode: discount > 0 ? couponCode : null,
-    month,
-    transactionId:res.data.paymentIntent.id,
-    paymentDate: new Date().toISOString(),
-  };
-
-  // ✅ Store payment in DB
-  await axios.post("http://localhost:3000/payments", paymentData)
-    .then(res => {
-      Swal.fire("Success", "Payment record created!", "success");
-      // 🔁 Now redirect to stripe/card page
-      navigate(`/dashboard/payment/${agreement._id}`, {
-        state: {
-          rent: discountedRent,
-        },
-      });
-    })
-    .catch(err => {
-      console.error(err);
-      Swal.fire("Error", "Failed to save payment info", "error");
-    });
-};
-
+  const handleStripeRedirect = () => {
+    if (!agreement || !month) {
+      return Swal.fire("Error", "Please fill in all required fields", "error");
+    }
 
   
+    navigate(`/dashboard/payment/${agreement._id}`, {
+      state: {
+        rent: discountedRent,
+        agreement,
+        discount,
+        couponCode,
+        month,
+      },
+    });
+  };
 
   return (
     <div className="max-w-xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
@@ -99,6 +81,7 @@ const MakePayment = () => {
 
       {agreement ? (
         <div className="space-y-4">
+    
           <div>
             <label className="font-semibold">Member Email</label>
             <input
@@ -108,6 +91,7 @@ const MakePayment = () => {
               className="input input-bordered w-full"
             />
           </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="font-semibold">Floor</label>
@@ -128,6 +112,8 @@ const MakePayment = () => {
               />
             </div>
           </div>
+
+     
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="font-semibold">Room No</label>
@@ -148,6 +134,8 @@ const MakePayment = () => {
               />
             </div>
           </div>
+
+    
           <div>
             <label className="font-semibold">Coupon Code</label>
             <div className="flex gap-2">
@@ -167,6 +155,8 @@ const MakePayment = () => {
               </button>
             </div>
           </div>
+
+  
           <div>
             <label className="font-semibold">Total Payable Rent</label>
             <input
@@ -178,6 +168,8 @@ const MakePayment = () => {
               className="input input-bordered w-full"
             />
           </div>
+
+  
           <div>
             <label className="font-semibold">Month</label>
             <input
@@ -189,14 +181,10 @@ const MakePayment = () => {
               className="input input-bordered w-full"
             />
           </div>
+
+   
           <button
-            onClick={() =>
-              navigate(`/dashboard/payment/${agreement._id}`, {
-                state: {
-                  rent: discountedRent,
-                },
-              })
-            }
+            onClick={handleStripeRedirect}
             className="btn btn-primary mt-4 w-full"
           >
             Pay Now

@@ -5,7 +5,7 @@ const ManageCoupons = () => {
   const [coupons, setCoupons] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/addcoupons")
+      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
       .then((res) => setCoupons(res.data))
       .catch((error) => console.log(error));
   }, []);
@@ -25,11 +25,11 @@ const ManageCoupons = () => {
     };
 
     axios
-      .post("http://localhost:3000/addcoupons", newCoupon)
+      .post("https://building-management-server-omega-drab.vercel.app/addcoupons", newCoupon)
       .then((res) => {
         if (res.data.insertedId || res.data.acknowledged) {
           axios
-            .get("http://localhost:3000/addcoupons")
+            .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
             .then((res) => setCoupons(res.data));
           form.reset();
           document.getElementById("my_modal_3").close();

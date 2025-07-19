@@ -9,7 +9,7 @@
 //   useEffect(() => {
 //     if (user?.email) {
 //       axios
-//         .get("http://localhost:3000/agreements")
+//         .get("https://building-management-server-omega-drab.vercel.app/agreements")
 //         .then((res) => {
 //           const checkedAgreement = res.data.find(
 //             (req) =>req.status === "checked"
@@ -79,15 +79,12 @@ const MyProfile = () => {
 
   useEffect(() => {
     if (user?.email) {
-      // Get Role
       axios
-        .get(`http://localhost:3000/users/role/${user.email}`)
+        .get(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`)
         .then((res) => setRole(res.data.role))
-        .catch((err) => console.error(err));
-
-      // If member, get agreement info
+        .catch((err) => console.error(err))
       axios
-        .get("http://localhost:3000/agreements")
+        .get("https://building-management-server-omega-drab.vercel.app/agreements")
         .then((res) => {
           const found = res.data.find(
             (req) => req.userEmail === user.email && req.status === "checked"
@@ -95,12 +92,10 @@ const MyProfile = () => {
           setAgreementInfo(found);
         })
         .catch((err) => console.error(err));
-
-      // If admin, fetch statistics
       axios
         .all([
-          axios.get("http://localhost:3000/apartinfo"),
-          axios.get("http://localhost:3000/users"),
+          axios.get("https://building-management-server-omega-drab.vercel.app/apartinfo"),
+          axios.get("https://building-management-server-omega-drab.vercel.app/users"),
         ])
         .then(
           axios.spread((roomsRes, usersRes) => {
@@ -129,18 +124,18 @@ const MyProfile = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-center">My Profile</h2>
+    
 
       <div className="flex flex-col items-center">
         <img
           src={user?.photoURL}
           alt="Profile"
-          className="w-24 h-24 rounded-full mb-4"
+          className="w-24 h-24 object-cover rounded-full mb-4"
         />
-        <h3 className="text-lg font-semibold">{user?.displayName}</h3>
-        <p className="text-gray-600">{user?.email}</p>
-        <p className="text-sm text-blue-500 mt-1 capitalize">
-          Role: {role || "N/A"}
+        <h3 className="text-lg font-semibold">Name : {user?.displayName}</h3>
+        <p className="text-gray-600">Email : {user?.email}</p>
+        <p className="text-sm text-blue-500 mt-1 font-bold">
+          Role : {role || "N/A"}
         </p>
       </div>
 
