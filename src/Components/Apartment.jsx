@@ -11,7 +11,7 @@ const Apartment = () => {
   const { user } = useContext(AuthContext);
   const [apartInfo, setApartInfo] = useState([]);
   const [searchRent, setSearchRent] = useState("");
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 6;
 
@@ -35,19 +35,19 @@ const Apartment = () => {
   );
 
   const handleAgreement = (apartment) => {
-      if (!user) {
-    Swal.fire({
-      icon: "warning",
-      title: "Login Required",
-      text: "Please log in to apply for an agreement.",
-      confirmButtonText: "Go to Login",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate("/login");
-      }
-    });
-    return;
-  }
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Login Required",
+        text: "Please log in to apply for an agreement.",
+        confirmButtonText: "Go to Login",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+      return;
+    }
     const agreementData = {
       userName: user.displayName,
       userEmail: user.email,
@@ -59,10 +59,11 @@ const Apartment = () => {
     };
 
     axios
-      .post(
-        "https://building-management-server-omega-drab.vercel.app/agreement",
-        agreementData
-      )
+      .post("https://building-management-server-omega-drab.vercel.app/agreement", agreementData, {
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      })
       .then(
         (res) => console.log(res.data),
         Swal.fire("Successfully receive your agreement request")

@@ -15,7 +15,11 @@ const MakePayment = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get("https://building-management-server-omega-drab.vercel.app/agreements")
+        .get("https://building-management-server-omega-drab.vercel.app/agreements", {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        })
         .then((res) => {
           const myAgreement = res.data.find(
             (item) =>
@@ -34,7 +38,9 @@ const MakePayment = () => {
       .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
       .then((res) => {
         const matched = res.data.find(
-          (c) => c.code.toLowerCase() === couponCode.toLowerCase() && c.status === "active"
+          (c) =>
+            c.code.toLowerCase() === couponCode.toLowerCase() &&
+            c.status === "active"
         );
         if (matched) {
           setDiscount(matched.discountPercentage);
@@ -42,7 +48,6 @@ const MakePayment = () => {
             "Coupon Applied",
             `You got ${matched.discountPercentage}% off!`,
             "success"
-
           );
         } else {
           setDiscount(0);
@@ -63,7 +68,6 @@ const MakePayment = () => {
       return Swal.fire("Error", "Please fill in all required fields", "error");
     }
 
-  
     navigate(`/dashboard/payment/${agreement._id}`, {
       state: {
         rent: discountedRent,
@@ -81,7 +85,6 @@ const MakePayment = () => {
 
       {agreement ? (
         <div className="space-y-4">
-    
           <div>
             <label className="font-semibold">Member Email</label>
             <input
@@ -113,7 +116,6 @@ const MakePayment = () => {
             </div>
           </div>
 
-     
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="font-semibold">Room No</label>
@@ -135,7 +137,6 @@ const MakePayment = () => {
             </div>
           </div>
 
-    
           <div>
             <label className="font-semibold">Coupon Code</label>
             <div className="flex gap-2">
@@ -156,7 +157,6 @@ const MakePayment = () => {
             </div>
           </div>
 
-  
           <div>
             <label className="font-semibold">Total Payable Rent</label>
             <input
@@ -169,7 +169,6 @@ const MakePayment = () => {
             />
           </div>
 
-  
           <div>
             <label className="font-semibold">Month</label>
             <input
@@ -182,7 +181,6 @@ const MakePayment = () => {
             />
           </div>
 
-   
           <button
             onClick={handleStripeRedirect}
             className="btn btn-primary mt-4 w-full"
