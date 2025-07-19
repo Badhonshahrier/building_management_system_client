@@ -17,12 +17,16 @@ const Dashboard = () => {
   const [role, setRole] = useState("");
   useEffect(() => {
   if (user?.email) {
-    fetch(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`)
+    fetch(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`,{
+      headers:{
+        authorization:`Bearer ${user.accessToken}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => setRole(data.role))
       .catch((error) => console.log(error));
   }
-}, [user?.email]);
+}, [user?.email,user.accessToken]);
   return (
     <div className="drawer lg:drawer-open min-h-screen">
       <input

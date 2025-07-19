@@ -10,11 +10,15 @@ const PaymentHistory = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`https://building-management-server-omega-drab.vercel.app/paymenthistory?email=${user.email}`)
+        .get(`https://building-management-server-omega-drab.vercel.app/paymenthistory?email=${user.email}`,{
+      headers:{
+        authorization:`Bearer ${user.accessToken}`
+      }
+    })
         .then((res) => setPayments(res.data))
         .catch((err) => console.error(err));
     }
-  }, [user?.email]);
+  }, [user?.email,user.accessToken]);
 
   return (
     <div className="p-6 max-w-6xl mx-auto">

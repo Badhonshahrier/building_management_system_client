@@ -19,7 +19,11 @@ const MyProfile = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`)
+        .get(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`,{
+      headers:{
+        authorization:`Bearer ${user.accessToken}`
+      }
+    })
         .then((res) => setRole(res.data.role))
         .catch((err) => console.error(err));
       axios

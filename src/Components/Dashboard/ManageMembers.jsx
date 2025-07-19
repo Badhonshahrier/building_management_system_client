@@ -1,8 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const ManageMembers = () => {
   const [members, setMembers] = useState([]);
+  const { user } = use(AuthContext);
   useEffect(() => {
     axios
       .get("https://building-management-server-omega-drab.vercel.app/users")
@@ -16,13 +18,24 @@ const ManageMembers = () => {
   }, []);
   const handleRemoveRole = (id) => {
     axios
-      .patch(`https://building-management-server-omega-drab.vercel.app/users/role-user/${id}`)
+      .patch(
+        `https://building-management-server-omega-drab.vercel.app/users/role-user/${id}`,
+        {
+          headers: {
+            authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
-          axios.get("https://building-management-server-omega-drab.vercel.app/users").then((res) => {
-            const membersOnly = res.data.filter((u) => u.role === "member");
-            setMembers(membersOnly);
-          });
+          axios
+            .get(
+              "https://building-management-server-omega-drab.vercel.app/users"
+            )
+            .then((res) => {
+              const membersOnly = res.data.filter((u) => u.role === "member");
+              setMembers(membersOnly);
+            });
         }
       })
       .catch((error) => console.log(error));
