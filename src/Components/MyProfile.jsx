@@ -18,7 +18,7 @@ const MyProfile = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/users/role/${user.email}`, {
+        .get(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`, {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
@@ -26,7 +26,7 @@ const MyProfile = () => {
         .then((res) => setRole(res.data.role))
         .catch((err) => console.error(err));
       axios
-        .get("http://localhost:3000/agreements", {
+        .get("https://building-management-server-omega-drab.vercel.app/agreements", {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
@@ -40,8 +40,8 @@ const MyProfile = () => {
         .catch((err) => console.error(err));
       axios
         .all([
-          axios.get("http://localhost:3000/apartinfo"),
-          axios.get("http://localhost:3000/users"),
+          axios.get("https://building-management-server-omega-drab.vercel.app/apartinfo"),
+          axios.get("https://building-management-server-omega-drab.vercel.app/users"),
         ])
         .then(
           axios.spread((roomsRes, usersRes) => {

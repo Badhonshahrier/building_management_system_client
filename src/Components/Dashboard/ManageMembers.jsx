@@ -7,7 +7,7 @@ const ManageMembers = () => {
   const { user } = use(AuthContext);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get("https://building-management-server-omega-drab.vercel.app/users")
       .then((res) => {
         const existingMember = res.data.filter(
           (member) => member.role === "member"
@@ -19,7 +19,7 @@ const ManageMembers = () => {
   const handleRemoveRole = (id) => {
     axios
       .patch(
-        `http://localhost:3000/users/role-user/${id}`,
+        `https://building-management-server-omega-drab.vercel.app/users/role-user/${id}`,
         {
           headers: {
             authorization: `Bearer ${user.accessToken}`,
@@ -30,7 +30,7 @@ const ManageMembers = () => {
         if (res.data.modifiedCount > 0) {
           axios
             .get(
-              "http://localhost:3000/users"
+              "https://building-management-server-omega-drab.vercel.app/users"
             )
             .then((res) => {
               const membersOnly = res.data.filter((u) => u.role === "member");

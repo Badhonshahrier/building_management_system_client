@@ -15,7 +15,7 @@ const MakePayment = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get("http://localhost:3000/agreements")
+        .get("https://building-management-server-omega-drab.vercel.app/agreements")
         .then((res) => {
           const myAgreement = res.data.find(
             (item) =>
@@ -31,7 +31,7 @@ const MakePayment = () => {
     if (!couponCode) return;
 
     axios
-      .get("http://localhost:3000/addcoupons")
+      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
       .then((res) => {
         const matched = res.data.find(
           (c) => c.code.toLowerCase() === couponCode.toLowerCase() && c.status === "active"

@@ -6,7 +6,7 @@ const AgreementRequests = () => {
   const { user } = use(AuthContext);
   const [agreeReq, setAgreeReq] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/agreements",{
+    fetch("https://building-management-server-omega-drab.vercel.app/agreements",{
       headers:{
         authorization:`Bearer ${user.accessToken}`
       }
@@ -18,7 +18,7 @@ const AgreementRequests = () => {
   const handleAccept = (id) => {
     axios
       .patch(
-        `http://localhost:3000/agreements/accept/${id}`,{
+        `https://building-management-server-omega-drab.vercel.app/agreements/accept/${id}`,{
       headers:{
         authorization:`Bearer ${user.accessToken}`
       }
@@ -34,7 +34,7 @@ const AgreementRequests = () => {
   const handleReject = (id) => {
     axios
       .patch(
-        `http://localhost:3000/agreements/reject/${id}`,{
+        `https://building-management-server-omega-drab.vercel.app/agreements/reject/${id}`,{
       headers:{
         authorization:`Bearer ${user.accessToken}`
       }
