@@ -10,7 +10,7 @@ const PaymentHistory = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`https://building-management-server-omega-drab.vercel.app/paymenthistory?email=${user.email}`,{
+        .get(`http://localhost:3000/paymenthistory?email=${user.email}`,{
       headers:{
         authorization:`Bearer ${user.accessToken}`
       }

@@ -4,7 +4,6 @@ import axios from "axios";
 
 const MyProfile = () => {
   const { user } = useContext(AuthContext);
-  console.log("token firebase token", user.accessToken);
 
   const [role, setRole] = useState(null);
   const [agreementInfo, setAgreementInfo] = useState(null);
@@ -19,15 +18,19 @@ const MyProfile = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`,{
-      headers:{
-        authorization:`Bearer ${user.accessToken}`
-      }
-    })
+        .get(`http://localhost:3000/users/role/${user.email}`, {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        })
         .then((res) => setRole(res.data.role))
         .catch((err) => console.error(err));
       axios
-        .get("https://building-management-server-omega-drab.vercel.app/agreements")
+        .get("http://localhost:3000/agreements", {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        })
         .then((res) => {
           const found = res.data.find(
             (req) => req.userEmail === user.email && req.status === "checked"
@@ -37,8 +40,8 @@ const MyProfile = () => {
         .catch((err) => console.error(err));
       axios
         .all([
-          axios.get("https://building-management-server-omega-drab.vercel.app/apartinfo"),
-          axios.get("https://building-management-server-omega-drab.vercel.app/users"),
+          axios.get("http://localhost:3000/apartinfo"),
+          axios.get("http://localhost:3000/users"),
         ])
         .then(
           axios.spread((roomsRes, usersRes) => {

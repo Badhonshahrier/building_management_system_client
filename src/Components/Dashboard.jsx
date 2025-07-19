@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import {
   FaUser,
@@ -13,15 +13,15 @@ import {
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Dashboard = () => {
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
   const [role, setRole] = useState("");
   useEffect(() => {
   if (user?.email) {
-    fetch(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`,{
-      headers:{
-        authorization:`Bearer ${user.accessToken}`
-      }
-    })
+    fetch(`http://localhost:3000/users/role/${user.email}`, {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        })
       .then((res) => res.json())
       .then((data) => setRole(data.role))
       .catch((error) => console.log(error));

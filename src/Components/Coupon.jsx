@@ -7,7 +7,7 @@ const Coupon = () => {
 
   useEffect(() => {
     axios
-      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
+      .get("http://localhost:3000/addcoupons")
       .then((res) => setCoupons(res.data))
       .catch((err) => console.log(err));
   }, []);

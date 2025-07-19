@@ -11,7 +11,7 @@ const MakeAnnouncement = () => {
 
     const newAnnouncement = { title, announcement, date: new Date() }
 
-    axios.post("https://building-management-server-omega-drab.vercel.app/announcement",newAnnouncement)
+    axios.post("http://localhost:3000/announcement",newAnnouncement)
     .then(res => {
       if (res.data.insertedId) {
         alert("Announcement posted!");
