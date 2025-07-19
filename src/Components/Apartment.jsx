@@ -5,11 +5,13 @@ import { FaSearch, FaBuilding, FaRegMoneyBillAlt } from "react-icons/fa";
 import { MdApartment } from "react-icons/md";
 import { GiStairs, GiModernCity } from "react-icons/gi";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const Apartment = () => {
   const { user } = useContext(AuthContext);
   const [apartInfo, setApartInfo] = useState([]);
   const [searchRent, setSearchRent] = useState("");
+  const navigate=useNavigate()
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 6;
 
@@ -33,6 +35,19 @@ const Apartment = () => {
   );
 
   const handleAgreement = (apartment) => {
+      if (!user) {
+    Swal.fire({
+      icon: "warning",
+      title: "Login Required",
+      text: "Please log in to apply for an agreement.",
+      confirmButtonText: "Go to Login",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/login");
+      }
+    });
+    return;
+  }
     const agreementData = {
       userName: user.displayName,
       userEmail: user.email,

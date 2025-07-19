@@ -34,7 +34,7 @@ const MakePayment = () => {
       .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
       .then((res) => {
         const matched = res.data.find(
-          (c) => c.code.toLowerCase() === couponCode.toLowerCase()
+          (c) => c.code.toLowerCase() === couponCode.toLowerCase() && c.status === "active"
         );
         if (matched) {
           setDiscount(matched.discountPercentage);

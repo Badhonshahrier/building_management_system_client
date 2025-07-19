@@ -5,7 +5,9 @@ const ManageCoupons = () => {
   const [coupons, setCoupons] = useState([]);
   useEffect(() => {
     axios
-      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
+      .get(
+        "https://building-management-server-omega-drab.vercel.app/addcoupons"
+      )
       .then((res) => setCoupons(res.data))
       .catch((error) => console.log(error));
   }, []);
@@ -22,20 +24,44 @@ const ManageCoupons = () => {
       discountPercentage: parseFloat(percentage),
       description,
       createdBy: "Admin",
+      status: "active",
     };
 
     axios
-      .post("https://building-management-server-omega-drab.vercel.app/addcoupons", newCoupon)
+      .post(
+        "https://building-management-server-omega-drab.vercel.app/addcoupons",
+        newCoupon
+      )
       .then((res) => {
         if (res.data.insertedId || res.data.acknowledged) {
           axios
-            .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
+            .get(
+              "https://building-management-server-omega-drab.vercel.app/addcoupons"
+            )
             .then((res) => setCoupons(res.data));
           form.reset();
           document.getElementById("my_modal_3").close();
         }
       })
       .catch((error) => console.log(error));
+  };
+
+  const handleStatusToggle = (id, currentStatus) => {
+    const newStatus = currentStatus === "active" ? "inactive" : "active";
+
+    axios
+      .patch(
+        `https://building-management-server-omega-drab.vercel.app/addcoupons/${id}`,
+        {
+          status: newStatus,
+        }
+      )
+      .then(() => {
+        setCoupons((prev) =>
+          prev.map((c) => (c._id === id ? { ...c, status: newStatus } : c))
+        );
+      })
+      .catch((error) => console.error("Failed to update status", error));
   };
 
   return (
@@ -49,7 +75,6 @@ const ManageCoupons = () => {
           Add Coupons
         </button>
       </div>
-
 
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box">
@@ -94,7 +119,6 @@ const ManageCoupons = () => {
         </div>
       </dialog>
 
-
       <table className="table w-full border mt-6">
         <thead className="bg-gray-200 text-gray-700">
           <tr>
@@ -102,10 +126,8 @@ const ManageCoupons = () => {
             <th>Coupon Code</th>
             <th>Discount (%)</th>
             <th>Description</th>
-            <th>Block</th>
-            <th>Max Discount</th>
-            <th>Valid Till</th>
             <th>Created By</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -115,14 +137,28 @@ const ManageCoupons = () => {
               <td className="font-medium">{coupon.code}</td>
               <td>{coupon.discountPercentage}%</td>
               <td>{coupon.description}</td>
-              <td>{coupon.applicableBlock || "N/A"}</td>
-              <td>৳{coupon.maxDiscountAmount || "N/A"}</td>
-              <td>
-                {coupon.validTill
-                  ? new Date(coupon.validTill).toLocaleDateString()
-                  : "N/A"}
-              </td>
               <td>{coupon.createdBy}</td>
+              <td>
+                <label className="cursor-pointer flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    className="toggle toggle-success"
+                    checked={coupon.status === "active"}
+                    onChange={() =>
+                      handleStatusToggle(coupon._id, coupon.status)
+                    }
+                  />
+                  <span
+                    className={`text-sm font-medium ${
+                      coupon.status === "active"
+                        ? "text-green-600"
+                        : "text-red-500"
+                    }`}
+                  >
+                    {coupon.status}
+                  </span>
+                </label>
+              </td>
             </tr>
           ))}
         </tbody>

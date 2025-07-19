@@ -30,6 +30,7 @@ const Coupon = () => {
               <div className="absolute top-3 right-3 bg-emerald-100 text-emerald-800 text-sm px-3 py-1 rounded-full font-semibold">
                 {coupon.discountPercentage}% OFF
               </div>
+             
               <h2 className="text-xl font-bold text-emerald-700 flex items-center gap-2">
                 <FaTicketAlt /> {coupon.code}
               </h2>
@@ -42,7 +43,12 @@ const Coupon = () => {
                   <span className="font-medium">Created By:</span>
                   {coupon.createdBy}
                 </p>
+                 <div className=" bg-emerald-100 text-emerald-800 text-sm px-2 py-1 rounded-full w-1/6 font-semibold">
+                {coupon.status}
               </div>
+                
+              </div>
+              
             </div>
           ))}
         </div>

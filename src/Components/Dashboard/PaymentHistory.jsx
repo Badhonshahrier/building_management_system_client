@@ -45,7 +45,7 @@ const PaymentHistory = () => {
                   <td>৳ {payment.rent}</td>
                   <td>{payment.discountPercentage || 0}%</td>
                   <td>{payment.couponCode || "None"}</td>
-                  <td>{new Date(payment.paymentDate).toLocaleDateString()}</td>
+                  <td>{new Date(payment.paymentDate).toISOString()}</td>
                 </tr>
               ))}
             </tbody>
