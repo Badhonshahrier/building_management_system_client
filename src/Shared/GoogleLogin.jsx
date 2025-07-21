@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 
 const GoogleLogin = () => {
   const { googleLogin } = use(AuthContext);
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const handleGoogle = () => {
     googleLogin()
       .then((data) => {
