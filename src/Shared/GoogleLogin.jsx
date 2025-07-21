@@ -1,11 +1,12 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
 const GoogleLogin = () => {
-  const { googleLogin } = use(AuthContext);
+  const { googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const handleGoogle = () => {
     googleLogin()
       .then((data) => {
@@ -23,6 +24,7 @@ const GoogleLogin = () => {
         console.log(error);
       });
   };
+
   return (
     <div className="text-center">
       <div className="divider">OR</div>
