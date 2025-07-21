@@ -15,11 +15,13 @@ import RentPayment from "../Components/RentPayment";
 import PrivateRoutes from "./PrivateRoute";
 import Announcement from "../Components/Announcement";
 import PaymentHistory from "../Components/Dashboard/PaymentHistory";
+import Errorpage from "../Components/Errorpage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <Errorpage></Errorpage>,
     children: [
       {
         index: true,
@@ -39,44 +41,84 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
+        element: (
+          <PrivateRoutes>
+            <Dashboard></Dashboard>
+          </PrivateRoutes>
+        ),
         children: [
           {
             path: "myprofile",
-            Component: MyProfile,
+            element: (
+              <PrivateRoutes>
+                <MyProfile></MyProfile>
+              </PrivateRoutes>
+            ),
           },
           {
             path: "managemembers",
-            Component: ManageMembers,
+            element: (
+              <PrivateRoutes>
+                <ManageMembers></ManageMembers>
+              </PrivateRoutes>
+            ),
           },
           {
-            path:"makeannouncement",
-            Component:MakeAnnouncement
+            path: "makeannouncement",
+            element: (
+              <PrivateRoutes>
+                <MakeAnnouncement></MakeAnnouncement>
+              </PrivateRoutes>
+            ),
           },
           {
-            path:"agreementrequests",
-            Component:AgreementRequests
+            path: "agreementrequests",
+            element: (
+              <PrivateRoutes>
+                <AgreementRequests></AgreementRequests>
+              </PrivateRoutes>
+            ),
           },
           {
-            path:"managecoupons",
-            Component:ManageCoupons,
+            path: "managecoupons",
+            element: (
+              <PrivateRoutes>
+                <ManageCoupons></ManageCoupons>
+              </PrivateRoutes>
+            ),
           },
           {
-            path:"makepayment",
-            Component:MakePayment,
+            path: "makepayment",
+            element: (
+              <PrivateRoutes>
+                <MakePayment></MakePayment>
+              </PrivateRoutes>
+            ),
           },
           {
-            path:'payment/:id',
-            Component:RentPayment,
+            path: "payment/:id",
+            element: (
+              <PrivateRoutes>
+                <RentPayment></RentPayment>
+              </PrivateRoutes>
+            ),
           },
           {
-            path:"announcement",
-            Component:Announcement,
+            path: "announcement",
+            element: (
+              <PrivateRoutes>
+                <Announcement></Announcement>
+              </PrivateRoutes>
+            ),
           },
           {
-            path:'paymenthistory',
-            Component:PaymentHistory,
-          }
+            path: "paymenthistory",
+            element: (
+              <PrivateRoutes>
+                <PaymentHistory></PaymentHistory>
+              </PrivateRoutes>
+            ),
+          },
         ],
       },
     ],
