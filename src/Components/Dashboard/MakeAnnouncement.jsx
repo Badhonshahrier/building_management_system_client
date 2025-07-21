@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Swal from "sweetalert2";
 
 const MakeAnnouncement = () => {
   const handleAnnouncement = (e) => {
@@ -14,7 +15,7 @@ const MakeAnnouncement = () => {
     axios.post("https://building-management-server-omega-drab.vercel.app/announcement",newAnnouncement)
     .then(res => {
       if (res.data.insertedId) {
-        alert("Announcement posted!");
+        Swal.fire("Successfully announcement posted");
         form.reset();
       }
     })

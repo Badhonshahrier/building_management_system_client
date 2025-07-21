@@ -29,7 +29,7 @@ const MakePayment = () => {
         })
         .catch((error) => console.log(error));
     }
-  }, [user?.email]);
+  }, [user?.email,user.accessToken]);
 
   const handleApplyCoupon = () => {
     if (!couponCode) return;
