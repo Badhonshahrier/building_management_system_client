@@ -66,7 +66,7 @@ const MyProfile = () => {
         )
         .catch((err) => console.error(err));
     }
-  }, [user?.email]);
+  }, [user?.email,user.accessToken]);
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
@@ -87,7 +87,7 @@ const MyProfile = () => {
         <p>
           <span className="font-semibold">Agreement Accept Date:</span>
           {role === "member" && agreementInfo?.date
-            ? new Date(agreementInfo.date).toISOString()
+            ? new Date(agreementInfo.requested_date).toISOString()
             : "None"}
         </p>
         <p>

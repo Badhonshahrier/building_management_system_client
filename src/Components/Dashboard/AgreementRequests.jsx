@@ -70,7 +70,7 @@ const AgreementRequests = () => {
               <td>{agree.block}</td>
               <td>{agree.apartmentNo}</td>
               <td>৳{agree.rent}</td>
-              <td>{new Date(agree.date).toLocaleDateString()}</td>
+              <td>{new Date(agree.requested_date).toLocaleDateString()}</td>
               <td className="space-x-2">
                 <button
                   onClick={() => handleAccept(agree._id)}

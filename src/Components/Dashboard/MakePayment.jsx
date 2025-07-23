@@ -15,11 +15,14 @@ const MakePayment = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get("https://building-management-server-omega-drab.vercel.app/agreements", {
-          headers: {
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        })
+        .get(
+          "https://building-management-server-omega-drab.vercel.app/agreements",
+          {
+            headers: {
+              Authorization: `Bearer ${user.accessToken}`,
+            },
+          }
+        )
         .then((res) => {
           const myAgreement = res.data.find(
             (item) =>
@@ -29,13 +32,15 @@ const MakePayment = () => {
         })
         .catch((error) => console.log(error));
     }
-  }, [user?.email,user.accessToken]);
+  }, [user?.email, user.accessToken]);
 
   const handleApplyCoupon = () => {
     if (!couponCode) return;
 
     axios
-      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
+      .get(
+        "https://building-management-server-omega-drab.vercel.app/addcoupons"
+      )
       .then((res) => {
         const matched = res.data.find(
           (c) =>

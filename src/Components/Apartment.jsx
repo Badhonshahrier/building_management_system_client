@@ -35,6 +35,7 @@ const Apartment = () => {
   );
 
   const handleAgreement = (apartment) => {
+    console.log(apartment)
     if (!user) {
       Swal.fire({
         icon: "warning",
@@ -55,15 +56,21 @@ const Apartment = () => {
       block: apartment.block,
       apartmentNo: apartment.apartmentNo,
       rent: apartment.rent,
+      requested_date: new Date().toISOString(),
       status: "pending",
     };
+    console.log("Sending agreement data:", agreementData);
 
     axios
-      .post("https://building-management-server-omega-drab.vercel.app/agreement", agreementData, {
-        headers: {
-          Authorization: `Bearer ${user.accessToken}`,
-        },
-      })
+      .post(
+        "https://building-management-server-omega-drab.vercel.app/agreement",
+        agreementData,
+        {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      )
       .then(
         (res) => console.log(res.data),
         Swal.fire("Successfully receive your agreement request")
