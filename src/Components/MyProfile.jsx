@@ -48,7 +48,7 @@ const MyProfile = () => {
           axios.spread((roomsRes, usersRes) => {
             const total = roomsRes.data.length;
             const unavailable = roomsRes.data.filter(
-              (room) => room.status === "unavailable"
+              (room) => room.room_status === "unavailable"
             ).length;
             const available = total - unavailable;
 
@@ -85,29 +85,29 @@ const MyProfile = () => {
       </div>
 
       <div className="mt-6 space-y-2 text-sm">
-        <p>
+        {/* <p>
           <span className="font-semibold">Agreement Accept Date:</span>
           {role === "member" && agreementInfo?.date
             ? new Date(agreementInfo.requested_date).toISOString()
             : "None"}
-        </p>
+        </p> */}
         <p>
-          <span className="font-semibold">Floor:</span>
+          <span className="font-semibold">Floor : </span>
           {role === "member" ? agreementInfo?.floor : "None"}
         </p>
         <p>
-          <span className="font-semibold">Block:</span>
+          <span className="font-semibold">Block : </span>
           {role === "member" ? agreementInfo?.block : "None"}
         </p>
         <p>
-          <span className="font-semibold">Room No:</span>
+          <span className="font-semibold">Room No : </span>
           {role === "member" ? agreementInfo?.apartmentNo : "None"}
         </p>
 
         {role === "admin" && (
           <>
             <p>
-              <span className="font-semibold">Total Rooms:</span> {stats.rooms}
+              <span className="font-semibold">Total Rooms :</span> {stats.rooms}
             </p>
             <p>
               <span className="font-semibold">Available Rooms (%):</span>

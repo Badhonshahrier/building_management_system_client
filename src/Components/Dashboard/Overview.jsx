@@ -68,7 +68,7 @@ const Overview = () => {
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Site Overview</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div className="p-5 bg-white rounded-xl shadow text-center">
-          <p className="text-gray-500">Total Users</p>
+          <p className="text-gray-500">Total Create Account</p>
           <h2 className="text-2xl font-bold">{totalUsers}</h2>
         </div>
         <div className="p-5 bg-white rounded-xl shadow text-center">

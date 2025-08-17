@@ -40,7 +40,7 @@ const CommunityEvents = () => {
   };
 
   return (
-    <div className="w-11/12 md:w-10/12 mx-auto py-10">
+    <div className="w-11/12 md:w-10/12 mx-auto pt-10 pb-10">
       <h2 className="text-4xl font-bold text-center text-gray-600 mb-6 italic">
         Community Events 
       </h2>

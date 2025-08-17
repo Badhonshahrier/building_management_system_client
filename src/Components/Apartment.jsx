@@ -5,7 +5,7 @@ import { FaSearch, FaRegMoneyBillAlt } from "react-icons/fa";
 import { MdApartment } from "react-icons/md";
 import { GiStairs, GiModernCity } from "react-icons/gi";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 const Apartment = () => {
   const { user } = useContext(AuthContext);
@@ -30,9 +30,13 @@ const Apartment = () => {
 
   // Sort by rent (ascending or descending)
   if (sortOrder === "asc") {
-    filteredApartments = [...filteredApartments].sort((a, b) => a.rent - b.rent);
+    filteredApartments = [...filteredApartments].sort(
+      (a, b) => a.rent - b.rent
+    );
   } else if (sortOrder === "desc") {
-    filteredApartments = [...filteredApartments].sort((a, b) => b.rent - a.rent);
+    filteredApartments = [...filteredApartments].sort(
+      (a, b) => b.rent - a.rent
+    );
   }
 
   // Pagination
@@ -66,10 +70,10 @@ const Apartment = () => {
       apartmentNo: apartment.apartmentNo,
       rent: apartment.rent,
       requested_date: new Date().toISOString(),
-      room_status:"unavailable",
+      room_status: "unavailable",
       status: "pending",
     };
-
+    console.log(agreementData);
     axios
       .post("http://localhost:3000/agreement", agreementData, {
         headers: {
@@ -77,7 +81,11 @@ const Apartment = () => {
         },
       })
       .then(() =>
-        Swal.fire("Success", "We have received your agreement request!", "success")
+        Swal.fire(
+          "Success",
+          "We have received your agreement request!",
+          "success"
+        )
       )
       .catch((error) => console.log(error));
   };
@@ -95,13 +103,17 @@ const Apartment = () => {
         <div className="flex gap-2">
           <button
             onClick={() => setSortOrder("asc")}
-            className={`btn ${sortOrder === "asc" ? "bg-blue-500 text-white" : "btn-outline"}`}
+            className={`btn ${
+              sortOrder === "asc" ? "bg-blue-500 text-white" : "btn-outline"
+            }`}
           >
             Price Asc
           </button>
           <button
             onClick={() => setSortOrder("desc")}
-            className={`btn ${sortOrder === "desc" ? "bg-blue-500 text-white" : "btn-outline"}`}
+            className={`btn ${
+              sortOrder === "desc" ? "bg-blue-500 text-white" : "btn-outline"
+            }`}
           >
             Price Desc
           </button>
@@ -134,13 +146,17 @@ const Apartment = () => {
                 <FaRegMoneyBillAlt /> Rent:{" "}
                 <span className="text-green-700 font-bold">৳{apt.rent}</span>
               </p>
-              <div className="mt-auto">
+              <div className="flex pt-4 justify-between items-center">
                 <button
                   onClick={() => handleAgreement(apt)}
-                  className="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
+                  className="w-1/2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
                 >
                   Apply for Agreement
                 </button>
+                <NavLink to={`/details/${apt._id}`}>
+                <button className="btn btn-accent">
+                  see more
+                </button></NavLink>
               </div>
             </div>
           </div>

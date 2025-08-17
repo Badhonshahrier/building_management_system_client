@@ -17,6 +17,7 @@ import Announcement from "../Components/Announcement";
 import PaymentHistory from "../Components/Dashboard/PaymentHistory";
 import Errorpage from "../Components/Errorpage";
 import Overview from "../Components/Dashboard/Overview";
+import ApartmentDetails from "../Components/ApartmentDetails";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,11 @@ export const router = createBrowserRouter([
         Component: Apartment,
       },
       {
+        path: "/details/:id",
+        Component: ApartmentDetails,
+        loader:({params})=>fetch(`http://localhost:3000/apartInfo/${params.id}`)
+      },
+      {
         path: "/dashboard",
         element: (
           <PrivateRoutes>
@@ -49,10 +55,12 @@ export const router = createBrowserRouter([
         ),
         children: [
           {
-            path:"overview",
-            element:<PrivateRoutes>
-              <Overview></Overview>
-            </PrivateRoutes>
+            path: "overview",
+            element: (
+              <PrivateRoutes>
+                <Overview></Overview>
+              </PrivateRoutes>
+            ),
           },
           {
             path: "myprofile",

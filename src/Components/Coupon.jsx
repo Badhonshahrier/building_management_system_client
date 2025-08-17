@@ -94,7 +94,7 @@ const Coupon = () => {
                 <div className="bg-white rounded-xl p-5 relative h-full">
                   {/* Animated Discount Badge */}
                   <motion.div
-                    className="absolute top-3 right-3 bg-gray-200 text-white text-sm px-3 py-1 rounded-full font-semibold shadow-md"
+                    className="absolute top-3 right-3 bg-green-600 text-white text-sm px-3 py-1 rounded-full font-semibold shadow-md"
                     animate={{ scale: [1, 1.1, 1] }}
                     transition={{ repeat: Infinity, duration: 2 }}
                   >
