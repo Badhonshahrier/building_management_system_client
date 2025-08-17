@@ -18,7 +18,7 @@ const Apartment = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/apartinfo")
+      .get("https://building-management-server-omega-drab.vercel.app/apartinfo")
       .then((res) => setApartInfo(res.data))
       .catch((error) => console.error(error));
   }, []);
@@ -75,7 +75,7 @@ const Apartment = () => {
     };
     console.log(agreementData);
     axios
-      .post("http://localhost:3000/agreement", agreementData, {
+      .post("https://building-management-server-omega-drab.vercel.app/agreement", agreementData, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
         },
@@ -104,7 +104,7 @@ const Apartment = () => {
           <button
             onClick={() => setSortOrder("asc")}
             className={`btn ${
-              sortOrder === "asc" ? "bg-blue-500 text-white" : "btn-outline"
+              sortOrder === "asc" ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 rounded transition-all py-2 px-4 text-white" : "btn-outline"
             }`}
           >
             Price Asc
@@ -112,7 +112,7 @@ const Apartment = () => {
           <button
             onClick={() => setSortOrder("desc")}
             className={`btn ${
-              sortOrder === "desc" ? "bg-blue-500 text-white" : "btn-outline"
+              sortOrder === "desc" ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 rounded transition-all py-2 px-4 text-white" : "btn-outline"
             }`}
           >
             Price Desc
@@ -154,7 +154,7 @@ const Apartment = () => {
                   Apply for Agreement
                 </button>
                 <NavLink to={`/details/${apt._id}`}>
-                <button className="btn btn-accent">
+                <button className="btn bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded transition-all py-2 px-4">
                   see more
                 </button></NavLink>
               </div>

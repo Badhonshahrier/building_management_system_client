@@ -7,7 +7,7 @@ const ManageMembers = () => {
   const { user } = use(AuthContext);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get("https://building-management-server-omega-drab.vercel.app/users")
       .then((res) => {
         const existingMember = res.data.filter(
           (member) => member.role === "member"
@@ -19,7 +19,7 @@ const ManageMembers = () => {
   const handleRemoveRole = (id) => {
     axios
       .patch(
-        `http://localhost:3000/users/role-user/${id}`,
+        `https://building-management-server-omega-drab.vercel.app/users/role-user/${id}`,
         {
           headers: {
             authorization: `Bearer ${user.accessToken}`,
@@ -30,7 +30,7 @@ const ManageMembers = () => {
         if (res.data.modifiedCount > 0) {
           axios
             .get(
-              "http://localhost:3000/users"
+              "https://building-management-server-omega-drab.vercel.app/users"
             )
             .then((res) => {
               const membersOnly = res.data.filter((u) => u.role === "member");
@@ -45,7 +45,7 @@ const ManageMembers = () => {
       <h2 className="text-2xl font-bold mb-4">Manage Members</h2>
       <table className="table w-full border">
         <thead>
-          <tr className="bg-gray-200 text-gray-700">
+          <tr className="bg-gray-200 text-gray-700 dark:bg-white">
             <th>#</th>
             <th>User Name</th>
             <th>User Email</th>
@@ -55,10 +55,10 @@ const ManageMembers = () => {
         <tbody>
           {members.map((user, index) => (
             <tr key={user._id} className="hover">
-              <td>{index + 1}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>
+              <td className="dark:bg-white dark:text-black">{index + 1}</td>
+              <td className="dark:bg-white dark:text-black">{user.name}</td>
+              <td className="dark:bg-white dark:text-black">{user.email}</td>
+              <td className="dark:bg-white dark:text-black">
                 <button
                   onClick={() => handleRemoveRole(user._id)}
                   className="btn btn-sm bg-red-500 hover:bg-red-700 text-white"

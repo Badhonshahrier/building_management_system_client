@@ -12,7 +12,7 @@ const MakeAnnouncement = () => {
 
     const newAnnouncement = { title, announcement, date: new Date() }
 
-    axios.post("http://localhost:3000/announcement",newAnnouncement)
+    axios.post("https://building-management-server-omega-drab.vercel.app/announcement",newAnnouncement)
     .then(res => {
       if (res.data.insertedId) {
         Swal.fire("Successfully announcement posted");
@@ -23,22 +23,22 @@ const MakeAnnouncement = () => {
   };
   return (
     <div className="max-w-xl mx-auto p-6 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">Make Announcement</h2>
+      <h2 className="text-2xl font-bold mb-4 dark:text-black">Make Announcement</h2>
       <form onSubmit={handleAnnouncement} className="space-y-4">
         <div>
-          <label className="block font-medium">Title</label>
+          <label className="block font-medium dark:text-black">Title</label>
           <input
             type="text"
             name="title"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-300"
             required
           />
         </div>
         <div>
-          <label className="block font-medium">Description</label>
+          <label className="block font-medium dark:text-black">Description</label>
           <textarea
             name="description"
-            className="textarea textarea-bordered w-full"
+            className="textarea textarea-bordered w-full dark:bg-gray-300"
             required
           >
 

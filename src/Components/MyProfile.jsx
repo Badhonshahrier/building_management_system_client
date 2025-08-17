@@ -19,7 +19,7 @@ const MyProfile = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/users/role/${user.email}`, {
+        .get(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`, {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
@@ -27,7 +27,7 @@ const MyProfile = () => {
         .then((res) => setRole(res.data.role))
         .catch((err) => console.error(err));
       axios
-        .get("http://localhost:3000/agreements", {
+        .get("https://building-management-server-omega-drab.vercel.app/agreements", {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
@@ -41,8 +41,8 @@ const MyProfile = () => {
         .catch((err) => console.error(err));
       axios
         .all([
-          axios.get("http://localhost:3000/apartinfo"),
-          axios.get("http://localhost:3000/users"),
+          axios.get("https://building-management-server-omega-drab.vercel.app/apartinfo"),
+          axios.get("https://building-management-server-omega-drab.vercel.app/users"),
         ])
         .then(
           axios.spread((roomsRes, usersRes) => {
@@ -77,7 +77,7 @@ const MyProfile = () => {
           alt="Profile"
           className="w-24 h-24 object-cover rounded-full mb-4"
         />
-        <h3 className="text-lg font-semibold">Name : {user?.displayName}</h3>
+        <h3 className="text-lg font-semibold dark:text-black">Name : {user?.displayName}</h3>
         <p className="text-gray-600">Email : {user?.email}</p>
         <p className="text-sm text-blue-500 mt-1 font-bold">
           Role : {role || "N/A"}
@@ -92,37 +92,37 @@ const MyProfile = () => {
             : "None"}
         </p> */}
         <p>
-          <span className="font-semibold">Floor : </span>
+          <span className="font-semibold dark:text-black">Floor : </span>
           {role === "member" ? agreementInfo?.floor : "None"}
         </p>
         <p>
-          <span className="font-semibold">Block : </span>
+          <span className="font-semibold dark:text-black">Block : </span>
           {role === "member" ? agreementInfo?.block : "None"}
         </p>
         <p>
-          <span className="font-semibold">Room No : </span>
+          <span className="font-semibold dark:text-black">Room No : </span>
           {role === "member" ? agreementInfo?.apartmentNo : "None"}
         </p>
 
         {role === "admin" && (
           <>
             <p>
-              <span className="font-semibold">Total Rooms :</span> {stats.rooms}
+              <span className="font-semibold dark:text-black">Total Rooms :</span> {stats.rooms}
             </p>
             <p>
-              <span className="font-semibold">Available Rooms (%):</span>
+              <span className="font-semibold dark:text-black">Available Rooms (%):</span>
               {stats.available}%
             </p>
             <p>
-              <span className="font-semibold">Unavailable Rooms (%):</span>
+              <span className="font-semibold dark:text-black">Unavailable Rooms (%):</span>
               {stats.unavailable}%
             </p>
             <p>
-              <span className="font-semibold">Total Users:</span>
+              <span className="font-semibold dark:text-black">Total Users:</span>
               {stats.users}
             </p>
             <p>
-              <span className="font-semibold">Total Members:</span>
+              <span className="font-semibold dark:text-black">Total Members:</span>
               {stats.members}
             </p>
           </>

@@ -15,14 +15,11 @@ const MakePayment = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(
-          "http://localhost:3000/agreements",
-          {
-            headers: {
-              Authorization: `Bearer ${user.accessToken}`,
-            },
-          }
-        )
+        .get("https://building-management-server-omega-drab.vercel.app/agreements", {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        })
         .then((res) => {
           const myAgreement = res.data.find(
             (item) =>
@@ -38,9 +35,7 @@ const MakePayment = () => {
     if (!couponCode) return;
 
     axios
-      .get(
-        "http://localhost:3000/addcoupons"
-      )
+      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
       .then((res) => {
         const matched = res.data.find(
           (c) =>
@@ -86,7 +81,7 @@ const MakePayment = () => {
 
   return (
     <div className="max-w-xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold mb-6 text-center">Make Rent Payment</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center dark:text-black">Make Rent Payment</h2>
 
       {agreement ? (
         <div className="space-y-4">

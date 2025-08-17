@@ -3,10 +3,10 @@ import React from "react";
 const Faq = () => {
   return (
     <div className="w-10/12 mx-auto pt-10 pb-10 " >
-      <h2 className="md:text-4xl text-2xl font-bold text-center text-gray-600 italic">
+      <h2 className="md:text-4xl text-2xl font-bold text-center text-gray-600 italic dark:text-white">
         Frequently Asked Questions
       </h2>
-      <p className="text-center mt-4 font-medium text-gray-500 mb-10 sm:pt-6 max-w-3xl mx-auto text-sm sm:text-base">
+      <p className="text-center mt-4 font-medium text-gray-500 mb-10 sm:pt-6 max-w-3xl mx-auto text-sm sm:text-base dark:text-white">
         "Have questions about how our Building Management System works? Find answers to the most common questions here. Learn about user roles, apartment management, payments, and dashboard features."
       </p>
       <div className="flex w-full flex-col lg:flex-row gap-6">
@@ -21,12 +21,12 @@ const Faq = () => {
           <div className="collapse collapse-arrow bg-base-100 border border-base-300">
             <input type="radio" name="faq-accordion" defaultChecked />
             <div className="collapse-title font-semibold">
-              <p className="text-md font-bold italic text-gray-600">
+              <p className="text-md font-bold italic text-gray-600 dark:text-white">
                 What is the Building Management System?
               </p>
             </div>
             <div className="collapse-content text-sm">
-              <p className="font-semibold text-gray-500">
+              <p className="font-semibold text-gray-500 dark:text-white">
                 It is a software platform that helps manage apartments, tenants, payments, announcements, and overall building operations efficiently.
               </p>
             </div>
@@ -35,12 +35,12 @@ const Faq = () => {
           <div className="collapse collapse-arrow bg-base-100 border border-base-300">
             <input type="radio" name="faq-accordion" />
             <div className="collapse-title font-semibold">
-              <p className="text-md font-bold italic text-gray-600">
+              <p className="text-md font-bold italic text-gray-600 dark:text-white">
                 Who can use the system?
               </p>
             </div>
             <div className="collapse-content text-sm">
-              <p className="font-semibold text-gray-500">
+              <p className="font-semibold text-gray-500 dark:text-white">
                 Users include Admins, Members, and regular tenants. Each role has different access permissions and functionalities within the system.
               </p>
             </div>
@@ -49,12 +49,12 @@ const Faq = () => {
           <div className="collapse collapse-arrow bg-base-100 border border-base-300">
             <input type="radio" name="faq-accordion" />
             <div className="collapse-title font-semibold">
-              <p className="text-md font-bold italic text-gray-600">
+              <p className="text-md font-bold italic text-gray-600 dark:text-white">
                 How do I pay my apartment dues?
               </p>
             </div>
             <div className="collapse-content text-sm">
-              <p className="font-semibold text-gray-500">
+              <p className="font-semibold text-gray-500 dark:text-white">
                 Payments can be made directly through the dashboard using integrated payment gateways. Members can also view payment history and download receipts.
               </p>
             </div>
@@ -63,12 +63,12 @@ const Faq = () => {
           <div className="collapse collapse-arrow bg-base-100 border border-base-300">
             <input type="radio" name="faq-accordion" />
             <div className="collapse-title font-semibold">
-              <p className="text-md font-bold italic text-gray-600">
+              <p className="text-md font-bold italic text-gray-600 dark:text-white">
                 Can I view announcements and notifications?
               </p>
             </div>
             <div className="collapse-content text-sm">
-              <p className="font-semibold text-gray-500">
+              <p className="font-semibold text-gray-500 dark:text-white">
                 Yes, all users can view building announcements and notifications directly from their dashboard to stay updated.
               </p>
             </div>
@@ -77,12 +77,12 @@ const Faq = () => {
           <div className="collapse collapse-arrow bg-base-100 border border-base-300">
             <input type="radio" name="faq-accordion" />
             <div className="collapse-title font-semibold">
-              <p className="text-md font-bold italic text-gray-600">
+              <p className="text-md font-bold italic text-gray-600 dark:text-white">
                 How do I report a maintenance issue?
               </p>
             </div>
             <div className="collapse-content text-sm">
-              <p className="font-semibold text-gray-500">
+              <p className="font-semibold text-gray-500 dark:text-white">
                 Members can submit maintenance requests via the dashboard, which will be routed to the admin for resolution.
               </p>
             </div>
@@ -91,12 +91,12 @@ const Faq = () => {
           <div className="collapse collapse-arrow bg-base-100 border border-base-300">
             <input type="radio" name="faq-accordion" />
             <div className="collapse-title font-semibold">
-              <p className="text-md font-bold italic text-gray-600">
+              <p className="text-md font-bold italic text-gray-600 dark:text-white">
                 How is member information managed?
               </p>
             </div>
             <div className="collapse-content text-sm">
-              <p className="font-semibold text-gray-500">
+              <p className="font-semibold text-gray-500 dark:text-white">
                 Admins can add, update, and manage member details including personal info, apartment assignment, and contact information securely.
               </p>
             </div>
@@ -105,12 +105,12 @@ const Faq = () => {
           <div className="collapse collapse-arrow bg-base-100 border border-base-300">
             <input type="radio" name="faq-accordion" />
             <div className="collapse-title font-semibold">
-              <p className="text-md font-bold italic text-gray-600">
+              <p className="text-md font-bold italic text-gray-600 dark:text-white">
                 What features are available on the Admin Dashboard?
               </p>
             </div>
             <div className="collapse-content text-sm">
-              <p className="font-semibold text-gray-500">
+              <p className="font-semibold text-gray-500 dark:text-white">
                 Admins can view overall stats, manage apartments and members, monitor payments, send announcements, and generate reports.
               </p>
             </div>
@@ -119,12 +119,12 @@ const Faq = () => {
           <div className="collapse collapse-arrow bg-base-100 border border-base-300">
             <input type="radio" name="faq-accordion" />
             <div className="collapse-title font-semibold">
-              <p className="text-md font-bold italic text-gray-600">
+              <p className="text-md font-bold italic text-gray-600 dark:text-white">
                 How secure is the system?
               </p>
             </div>
             <div className="collapse-content text-sm">
-              <p className="font-semibold text-gray-500">
+              <p className="font-semibold text-gray-500 dark:text-white">
                 The system uses authentication, role-based access, and encrypted data storage to ensure all user and building information is secure.
               </p>
             </div>

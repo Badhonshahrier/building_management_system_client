@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router";
 import NavImg from "../assets/Screenshot_35-removebg-preview.png";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
@@ -118,7 +119,8 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
 
-        <div className="navbar-end">
+        <div className="navbar-end gap-5">
+          <ThemeToggle></ThemeToggle>
           {user ? (
             <div className="dropdown dropdown-end">
               <div tabIndex={0} className="avatar cursor-pointer">

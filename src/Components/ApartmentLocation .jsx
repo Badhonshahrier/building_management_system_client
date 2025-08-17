@@ -16,11 +16,11 @@ const ApartmentLocation = () => {
   return (
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="flex items-center justify-center md:text-4xl text-2xl font-bold text-gray-600 mb-4 italic">
-          <PiMapPinAreaDuotone className="mr-3 text-green-600 text-5xl" />
+        <h2 className="flex items-center justify-center md:text-4xl text-2xl font-bold text-gray-600 mb-4 italic dark:text-white">
+          <PiMapPinAreaDuotone className="mr-3 text-green-600 text-5xl dark:text-white" />
           Our Apartment Location
         </h2>
-        <p className="text-center text-gray-600 md:text-lg mb-10 max-w-3xl mx-auto">
+        <p className="text-center text-gray-600 md:text-lg mb-10 max-w-3xl mx-auto dark:text-white">
           You can easily reach our apartment from anywhere in Dhaka. Here's how
           to find us:
         </p>
@@ -46,12 +46,12 @@ const ApartmentLocation = () => {
         </div>
 
         <div className="p-6 rounded-xl">
-          <h3 className="flex items-center justify-center gap-2 text-2xl font-semibold text-gray-800 mb-6">
+          <h3 className="flex items-center justify-center gap-2 text-2xl font-semibold text-gray-800 mb-6 dark:text-white">
             <FaMapMarkerAlt className="text-green-600" />
             How to Reach Us
           </h3>
 
-          <ul className="space-y-4 flex flex-col items-center text-gray-700 text-base">
+          <ul className="space-y-4 flex flex-col items-center text-gray-700 text-base dark:text-white">
             <li className="flex gap-3 items-start w-full max-w-xl">
               <FaBus className="text-green-500 mt-1" />
               <span>

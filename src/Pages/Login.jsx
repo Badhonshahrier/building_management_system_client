@@ -59,7 +59,7 @@ const Login = () => {
                 </Link>{" "}
                 here
               </p>
-              <button className="btn btn-secondary mt-4 w-full">Login</button>
+              <button className="btn bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 mt-4 w-full">Login</button>
                <GoogleLogin></GoogleLogin>
             </form>
           </div>

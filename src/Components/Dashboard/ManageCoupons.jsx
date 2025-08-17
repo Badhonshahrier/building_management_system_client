@@ -5,9 +5,7 @@ const ManageCoupons = () => {
   const [coupons, setCoupons] = useState([]);
   useEffect(() => {
     axios
-      .get(
-        "http://localhost:3000/addcoupons"
-      )
+      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
       .then((res) => setCoupons(res.data))
       .catch((error) => console.log(error));
   }, []);
@@ -28,16 +26,11 @@ const ManageCoupons = () => {
     };
 
     axios
-      .post(
-        "http://localhost:3000/addcoupons",
-        newCoupon
-      )
+      .post("https://building-management-server-omega-drab.vercel.app/addcoupons", newCoupon)
       .then((res) => {
         if (res.data.insertedId || res.data.acknowledged) {
           axios
-            .get(
-              "http://localhost:3000/addcoupons"
-            )
+            .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
             .then((res) => setCoupons(res.data));
           form.reset();
           document.getElementById("my_modal_3").close();
@@ -50,12 +43,9 @@ const ManageCoupons = () => {
     const newStatus = currentStatus === "active" ? "inactive" : "active";
 
     axios
-      .patch(
-        `http://localhost:3000/addcoupons/${id}`,
-        {
-          status: newStatus,
-        }
-      )
+      .patch(`https://building-management-server-omega-drab.vercel.app/addcoupons/${id}`, {
+        status: newStatus,
+      })
       .then(() => {
         setCoupons((prev) =>
           prev.map((c) => (c._id === id ? { ...c, status: newStatus } : c))
@@ -122,27 +112,27 @@ const ManageCoupons = () => {
       <table className="table w-full border mt-6">
         <thead className="bg-gray-200 text-gray-700">
           <tr>
-            <th>#</th>
-            <th>Coupon Code</th>
-            <th>Discount (%)</th>
-            <th>Description</th>
-            <th>Created By</th>
-            <th>Status</th>
+            <th className="dark:bg-white text-black">#</th>
+            <th className="dark:bg-white text-black">Coupon Code</th>
+            <th className="dark:bg-white text-black">Discount (%)</th>
+            <th className="dark:bg-white text-black">Description</th>
+            <th className="dark:bg-white text-black">Created By</th>
+            <th className="dark:bg-white text-black">Status</th>
           </tr>
         </thead>
         <tbody>
           {coupons.map((coupon, index) => (
             <tr key={coupon._id} className="hover">
-              <td>{index + 1}</td>
-              <td className="font-medium">{coupon.code}</td>
-              <td>{coupon.discountPercentage}%</td>
-              <td>{coupon.description}</td>
-              <td>{coupon.createdBy}</td>
-              <td>
-                <label className="cursor-pointer flex items-center gap-2">
+              <td className="dark:bg-white text-black">{index + 1}</td>
+              <td className="font-medium dark:bg-white text-black">{coupon.code}</td>
+              <td className="dark:bg-white text-black">{coupon.discountPercentage}%</td>
+              <td className="dark:bg-white text-black">{coupon.description}</td>
+              <td className="dark:bg-white text-black">{coupon.createdBy}</td>
+              <td className="dark:bg-white text-black">
+                <label  className="cursor-pointer flex items-center gap-2">
                   <input
                     type="checkbox"
-                    className="toggle toggle-success"
+                    className="toggle toggle-success "
                     checked={coupon.status === "active"}
                     onChange={() =>
                       handleStatusToggle(coupon._id, coupon.status)

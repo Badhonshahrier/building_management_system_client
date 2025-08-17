@@ -25,11 +25,11 @@ const Overview = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get("https://building-management-server-omega-drab.vercel.app/users")
       .then((res) => setUsers(res.data))
       .catch((error) => console.log(error));
     axios
-      .get("http://localhost:3000/agreements", {
+      .get("https://building-management-server-omega-drab.vercel.app/agreements", {
         headers: {
           authorization: `Bearer ${user.accessToken}`,
         },
@@ -38,7 +38,7 @@ const Overview = () => {
       .catch((error) => console.log(error));
 
     axios
-      .get("http://localhost:3000/apartInfo")
+      .get("https://building-management-server-omega-drab.vercel.app/apartInfo")
       .then((res) => setRooms(res.data))
       .catch((error) => console.log(error));
   }, [user.accessToken]);
@@ -69,24 +69,24 @@ const Overview = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div className="p-5 bg-white rounded-xl shadow text-center">
           <p className="text-gray-500">Total Create Account</p>
-          <h2 className="text-2xl font-bold">{totalUsers}</h2>
+          <h2 className="text-2xl font-bold dark:text-black">{totalUsers}</h2>
         </div>
         <div className="p-5 bg-white rounded-xl shadow text-center">
-          <p className="text-gray-500">Apartments</p>
-          <h2 className="text-2xl font-bold">{totalRooms}</h2>
+          <p className="text-gray-500 ">Apartments</p>
+          <h2 className="text-2xl font-bold dark:text-black">{totalRooms}</h2>
         </div>
         <div className="p-5 bg-white rounded-xl shadow text-center">
           <p className="text-gray-500">Members</p>
-          <h2 className="text-2xl font-bold">{totalMembers}</h2>
+          <h2 className="text-2xl font-bold dark:text-black">{totalMembers}</h2>
         </div>
         <div className="p-5 bg-white rounded-xl shadow text-center">
           <p className="text-gray-500">Unavailable Rooms</p>
-          <h2 className="text-2xl font-bold">{unavailableRooms}</h2>
+          <h2 className="text-2xl font-bold dark:text-black">{unavailableRooms}</h2>
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="bg-white p-6 rounded-xl shadow">
-          <h2 className="text-xl font-semibold mb-4">Room Availability</h2>
+          <h2 className="text-xl font-semibold mb-4 dark:text-black">Room Availability</h2>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -110,7 +110,7 @@ const Overview = () => {
           </ResponsiveContainer>
         </div>
         <div className="bg-white p-6 rounded-xl shadow">
-          <h2 className="text-xl font-semibold mb-4">Users vs Members</h2>
+          <h2 className="text-xl font-semibold mb-4 dark:text-black">Users vs Members</h2>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={userData}>
               <CartesianGrid strokeDasharray="3 3" />

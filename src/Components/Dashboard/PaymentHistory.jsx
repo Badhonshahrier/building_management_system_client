@@ -18,7 +18,7 @@ const PaymentHistory = () => {
     if (user?.email) {
       axios
         .get(
-          `http://localhost:3000/paymenthistory?email=${user.email}`,
+          `https://building-management-server-omega-drab.vercel.app/paymenthistory?email=${user.email}`,
           {
             headers: {
               authorization: `Bearer ${user.accessToken}`,
@@ -31,13 +31,13 @@ const PaymentHistory = () => {
   }, [user?.email, user.accessToken]);
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center text-blue-700">
+    <div className="p-6 max-w-6xl mx-auto ">
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-600 dark:text-black">
         <FaReceipt className="inline mr-2" /> Payment History
       </h2>
 
       {payments.length > 0 ? (
-        <div className="overflow-x-auto rounded-xl shadow-lg border">
+        <div className="overflow-x-auto rounded-xl shadow-lg border dark:bg-white">
           <table className="table w-full text-sm md:text-base">
             <thead className="bg-blue-100 text-blue-800 font-semibold text-left">
               <tr>
@@ -73,15 +73,15 @@ const PaymentHistory = () => {
             <tbody>
               {payments.map((payment, index) => (
                 <tr key={payment._id} className="hover:bg-gray-50">
-                  <td>{index + 1}</td>
-                  <td className="font-medium">{payment.month}</td>
-                  <td className="text-blue-600 font-mono">
+                  <td className="dark:text-black">{index + 1}</td>
+                  <td className="font-medium dark:text-black">{payment.month}</td>
+                  <td className="text-blue-600 font-mono ">
                     {payment.transactionId}
                   </td>
-                  <td>৳ {payment.rent}</td>
-                  <td>{payment.discountPercentage || 0}%</td>
-                  <td>{payment.couponCode || "None"}</td>
-                  <td>{new Date(payment.paymentDate).toISOString()}</td>
+                  <td className="dark:text-black">৳ {payment.rent}</td>
+                  <td className="dark:text-black">{payment.discountPercentage || 0}%</td>
+                  <td className="dark:text-black">{payment.couponCode || "None"}</td>
+                  <td className="dark:text-black">{new Date(payment.paymentDate).toISOString()}</td>
                 </tr>
               ))}
             </tbody>
