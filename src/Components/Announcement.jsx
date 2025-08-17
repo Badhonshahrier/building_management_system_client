@@ -14,8 +14,8 @@ const Announcement = () => {
 
   return (
     <div className="py-10 px-4 max-w-7xl mx-auto">
-      <h2 className="font-bold mb-6 text-center flex items-center justify-center gap-2 pt-26 text-4xl text-gray-600 italic dark:text-black">
-        <FiSpeaker className="text-blue-700 text-4xl dark:text-black" /> Latest Announcements
+      <h2 className="font-bold mb-6 text-center flex items-center justify-center gap-2 pt-26 text-4xl text-gray-600 italic">
+        <FiSpeaker className="text-blue-700 text-4xl" /> Latest Announcements
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

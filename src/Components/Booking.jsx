@@ -41,18 +41,18 @@ const CommunityEvents = () => {
 
   return (
     <div className="w-11/12 md:w-10/12 mx-auto pt-10 pb-10">
-      <h2 className="text-4xl font-bold text-center text-gray-600 mb-6 italic dark:text-white">
+      <h2 className="text-4xl font-bold text-center text-gray-600 mb-6 italic">
         Community Events 
       </h2>
-      <p className="text-center md:w-4/6 mx-auto text-sm  pb-10 md:text-gray-800 dark:text-white">“Stay connected with your community! Here you’ll find all important building updates, events, and notices — from annual meetings, fire drills, and workshops to fun gatherings like potluck dinners.</p>
+      <p className="text-center md:w-4/6 mx-auto text-sm  pb-10 md:text-gray-800">“Stay connected with your community! Here you’ll find all important building updates, events, and notices — from annual meetings, fire drills, and workshops to fun gatherings like potluck dinners.</p>
 
       <div className="relative bg-base-100 rounded-lg shadow-md p-8 flex flex-col items-center text-center">
         {/* Event Content */}
         <h3 className="text-2xl font-semibold text-indigo-700">
           {events[current].title}
         </h3>
-        <p className="text-gray-500 text-sm mt-2 dark:text-white">{events[current].date}</p>
-        <p className="mt-4 text-gray-600 dark:text-white">{events[current].description}</p>
+        <p className="text-gray-500 text-sm mt-2">{events[current].date}</p>
+        <p className="mt-4 text-gray-600">{events[current].description}</p>
 
         {/* Navigation Arrows */}
         <div className="flex justify-between w-full absolute top-1/2 transform -translate-y-1/2 px-4">

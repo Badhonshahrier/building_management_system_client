@@ -24,10 +24,10 @@ const NewsletterContact = () => {
 
   return (
     <div className="w-11/12 md:w-10/12 mx-auto py-20">
-      <h2 className="text-4xl font-bold text-center text-gray-600 mb-4 italic dark:text-white">
+      <h2 className="text-4xl font-bold text-center text-gray-600 mb-4 italic">
         Stay Connected
       </h2>
-      <p className="text-center text-gray-500 mb-10 max-w-3xl mx-auto text-sm sm:text-base dark:text-white">
+      <p className="text-center text-gray-500 mb-10 max-w-3xl mx-auto text-sm sm:text-base">
         Subscribe to our newsletter for updates or contact us directly for any
         queries regarding your building management.
       </p>
@@ -35,7 +35,7 @@ const NewsletterContact = () => {
       {/* Newsletter Form */}
       <div className="grid md:grid-cols-2 gap-10">
         <div className="bg-base-100 p-6 rounded-lg shadow-md">
-          <h3 className="text-xl font-semibold mb-4 text-black dark:text-white">
+          <h3 className="text-xl font-semibold mb-4 text-black">
             Newsletter
           </h3>
           <form onSubmit={handleSubscribe} className="flex flex-col gap-4">
@@ -54,7 +54,7 @@ const NewsletterContact = () => {
               Subscribe
             </button>
             {success && (
-              <p className="text-green-600 font-medium dark:text-white">
+              <p className="text-green-600 font-medium">
                 Thank you! You are subscribed.
               </p>
             )}
@@ -63,7 +63,7 @@ const NewsletterContact = () => {
 
         {/* Contact Form */}
         <div className="bg-base-100 p-6 rounded-lg shadow-md">
-          <h3 className="text-xl font-semibold mb-4 text-black dark:text-white">Contact Us</h3>
+          <h3 className="text-xl font-semibold mb-4 text-black">Contact Us</h3>
           <form onSubmit={handleContact} className="flex flex-col gap-4">
             <input
               type="email"
@@ -88,7 +88,7 @@ const NewsletterContact = () => {
               Send Message
             </button>
             {success && (
-              <p className="text-green-600 font-medium dark:text-white">
+              <p className="text-green-600 font-medium ">
                 Thank you! Your message has been sent.
               </p>
             )}

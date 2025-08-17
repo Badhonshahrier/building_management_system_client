@@ -34,7 +34,7 @@ const Coupon = () => {
     <>
       {/* Title */}
       <motion.h1
-        className="text-4xl font-bold text-center pt-20 text-gray-600 italic dark:text-white "
+        className="text-4xl font-bold text-center pt-20 text-gray-600 italic"
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -44,7 +44,7 @@ const Coupon = () => {
 
       {/* Subtitle */}
       <motion.p
-        className="text-center w-4/6 mx-auto py-4 text-gray-600 dark:text-white"
+        className="text-center w-4/6 mx-auto py-4 text-gray-600"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.8 }}
