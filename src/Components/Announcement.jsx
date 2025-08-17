@@ -7,14 +7,14 @@ const Announcement = () => {
 
   useEffect(() => {
     axios
-      .get("https://building-management-server-omega-drab.vercel.app/announce")
+      .get("http://localhost:3000/announce")
       .then((res) => setAnnounce(res.data))
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <div className="py-10 px-4 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center text-blue-700 flex items-center justify-center gap-2">
+      <h2 className="font-bold mb-6 text-center flex items-center justify-center gap-2 pt-26 text-4xl text-gray-600 italic">
         <FiSpeaker className="text-blue-700 text-4xl" /> Latest Announcements
       </h2>
 

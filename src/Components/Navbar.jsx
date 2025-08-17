@@ -39,7 +39,7 @@ const Navbar = () => {
         <NavLink
           to="/apartment"
           className={({ isActive }) =>
-            isActive ? "font-bold text-blue-600 underline M" : "font-bold"
+            isActive ? "font-bold text-blue-600 underline text-md" : "text-md font-bold"
           }
         >
           Apartment
@@ -49,7 +49,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-gray-300">
+    <div className="bg-gray-300 sticky top-0 z-50 w-full">
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -74,7 +74,7 @@ const Navbar = () => {
             </ul>
           </div>
           <img className="h-13 w-13 object-cover" src={NavImg} alt="" />
-          <span className="ml-1 text-xl font-bold">BuildingManager</span>
+          <span className="ml-1 text-xl italic font-bold">BuildingManager</span>
         </div>
 
         <div className="navbar-center hidden lg:flex">
@@ -121,7 +121,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/login">
-              <button className="btn btn-info">Login</button>
+              <button className="btn bg-gradient-to-r hover:from-green-600 hover:to-emerald-700 text-white text-lg px-10 from-green-500 to-emerald-600 font-bold rounded-xl">Login</button>
             </Link>
           )}
         </div>

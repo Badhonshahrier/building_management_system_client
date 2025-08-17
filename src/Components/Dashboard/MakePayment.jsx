@@ -16,7 +16,7 @@ const MakePayment = () => {
     if (user?.email) {
       axios
         .get(
-          "https://building-management-server-omega-drab.vercel.app/agreements",
+          "http://localhost:3000/agreements",
           {
             headers: {
               Authorization: `Bearer ${user.accessToken}`,
@@ -39,7 +39,7 @@ const MakePayment = () => {
 
     axios
       .get(
-        "https://building-management-server-omega-drab.vercel.app/addcoupons"
+        "http://localhost:3000/addcoupons"
       )
       .then((res) => {
         const matched = res.data.find(

@@ -16,6 +16,7 @@ import PrivateRoutes from "./PrivateRoute";
 import Announcement from "../Components/Announcement";
 import PaymentHistory from "../Components/Dashboard/PaymentHistory";
 import Errorpage from "../Components/Errorpage";
+import Overview from "../Components/Dashboard/Overview";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,12 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         children: [
+          {
+            path:"overview",
+            element:<PrivateRoutes>
+              <Overview></Overview>
+            </PrivateRoutes>
+          },
           {
             path: "myprofile",
             element: (

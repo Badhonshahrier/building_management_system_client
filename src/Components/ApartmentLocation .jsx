@@ -15,8 +15,8 @@ const ApartmentLocation = () => {
 
   return (
     <section className="py-20">
-      <div className="max-w-6xl mx-auto px-4 md:px-8">
-        <h2 className="flex items-center justify-center text-4xl font-extrabold text-gray-800 mb-4">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <h2 className="flex items-center justify-center text-4xl font-bold text-gray-600 mb-4 italic">
           <PiMapPinAreaDuotone className="mr-3 text-green-600 text-5xl" />
           Our Apartment Location
         </h2>
@@ -45,7 +45,7 @@ const ApartmentLocation = () => {
           </MapContainer>
         </div>
 
-        <div className="p-6 rounded-xl shadow-sm bg-gray-50">
+        <div className="p-6 rounded-xl">
           <h3 className="flex items-center justify-center gap-2 text-2xl font-semibold text-gray-800 mb-6">
             <FaMapMarkerAlt className="text-green-600" />
             How to Reach Us

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { FaSearch, FaBuilding, FaRegMoneyBillAlt } from "react-icons/fa";
+import { FaSearch, FaRegMoneyBillAlt } from "react-icons/fa";
 import { MdApartment } from "react-icons/md";
 import { GiStairs, GiModernCity } from "react-icons/gi";
 import Swal from "sweetalert2";
@@ -11,21 +11,31 @@ const Apartment = () => {
   const { user } = useContext(AuthContext);
   const [apartInfo, setApartInfo] = useState([]);
   const [searchRent, setSearchRent] = useState("");
+  const [sortOrder, setSortOrder] = useState(null);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 6;
 
   useEffect(() => {
     axios
-      .get("https://building-management-server-omega-drab.vercel.app/apartinfo")
+      .get("http://localhost:3000/apartinfo")
       .then((res) => setApartInfo(res.data))
       .catch((error) => console.error(error));
   }, []);
 
-  const filteredApartments = apartInfo.filter((apt) =>
+  // Filter by rent (search)
+  let filteredApartments = apartInfo.filter((apt) =>
     searchRent ? apt.rent <= parseInt(searchRent) : true
   );
 
+  // Sort by rent (ascending or descending)
+  if (sortOrder === "asc") {
+    filteredApartments = [...filteredApartments].sort((a, b) => a.rent - b.rent);
+  } else if (sortOrder === "desc") {
+    filteredApartments = [...filteredApartments].sort((a, b) => b.rent - a.rent);
+  }
+
+  // Pagination
   const numberOfPages = Math.ceil(filteredApartments.length / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
 
@@ -35,7 +45,6 @@ const Apartment = () => {
   );
 
   const handleAgreement = (apartment) => {
-    console.log(apartment)
     if (!user) {
       Swal.fire({
         icon: "warning",
@@ -59,29 +68,22 @@ const Apartment = () => {
       requested_date: new Date().toISOString(),
       status: "pending",
     };
-    console.log("Sending agreement data:", agreementData);
 
     axios
-      .post(
-        "https://building-management-server-omega-drab.vercel.app/agreement",
-        agreementData,
-        {
-          headers: {
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        }
-      )
-      .then(
-        (res) => console.log(res.data),
-        Swal.fire("Successfully receive your agreement request")
+      .post("http://localhost:3000/agreement", agreementData, {
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      })
+      .then(() =>
+        Swal.fire("Success", "We have received your agreement request!", "success")
       )
       .catch((error) => console.log(error));
   };
 
   return (
-    <div className="mt-10">
-      {/* Search Box */}
-      <div className="flex justify-center items-center gap-2 mb-6 px-4">
+    <div className="pt-10 bg-base-200">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-3 mb-6 px-4">
         <input
           type="number"
           value={searchRent}
@@ -89,9 +91,20 @@ const Apartment = () => {
           placeholder="Search apartment by rent..."
           className="input input-bordered w-full max-w-md"
         />
-        <button className="btn bg-green-600 hover:bg-green-700 text-white">
-          <FaSearch className="mr-1" /> Search
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setSortOrder("asc")}
+            className={`btn ${sortOrder === "asc" ? "bg-blue-500 text-white" : "btn-outline"}`}
+          >
+            Price Asc
+          </button>
+          <button
+            onClick={() => setSortOrder("desc")}
+            className={`btn ${sortOrder === "desc" ? "bg-blue-500 text-white" : "btn-outline"}`}
+          >
+            Price Desc
+          </button>
+        </div>
       </div>
 
       {/* Apartment Cards */}
@@ -99,32 +112,36 @@ const Apartment = () => {
         {displayedApartments.map((apt, index) => (
           <div
             key={index}
-            className="border border-gray-200 p-5 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 bg-white"
+            className="border border-gray-200 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 bg-white h-full flex flex-col"
           >
             <img
               src={apt.image}
               alt="Apartment"
-              className="w-full h-52 object-cover rounded-lg mb-4"
+              className="w-full h-52 object-cover rounded-t-lg"
             />
-            <h2 className="text-xl font-bold flex items-center gap-2 mb-1 text-green-700">
-              <MdApartment /> Apt No: {apt.apartmentNo}
-            </h2>
-            <p className="flex items-center gap-2 text-gray-600">
-              <GiStairs /> Floor: {apt.floor}
-            </p>
-            <p className="flex items-center gap-2 text-gray-600">
-              <GiModernCity /> Block: {apt.block}
-            </p>
-            <p className="flex items-center gap-2 text-gray-700 font-semibold mt-2">
-              <FaRegMoneyBillAlt /> Rent:{" "}
-              <span className="text-green-700 font-bold">৳{apt.rent}</span>
-            </p>
-            <button
-              onClick={() => handleAgreement(apt)}
-              className="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
-            >
-              Apply for Agreement
-            </button>
+            <div className="p-5 flex flex-col flex-grow">
+              <h2 className="text-xl font-bold flex items-center gap-2 mb-1 text-green-700">
+                <MdApartment /> Apt No: {apt.apartmentNo}
+              </h2>
+              <p className="flex items-center gap-2 text-gray-600">
+                <GiStairs /> Floor: {apt.floor}
+              </p>
+              <p className="flex items-center gap-2 text-gray-600">
+                <GiModernCity /> Block: {apt.block}
+              </p>
+              <p className="flex items-center gap-2 text-gray-700 font-semibold mt-2">
+                <FaRegMoneyBillAlt /> Rent:{" "}
+                <span className="text-green-700 font-bold">৳{apt.rent}</span>
+              </p>
+              <div className="mt-auto">
+                <button
+                  onClick={() => handleAgreement(apt)}
+                  className="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
+                >
+                  Apply for Agreement
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>

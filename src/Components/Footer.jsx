@@ -4,7 +4,7 @@ import footerImg from "../../public/Screenshot_35-removebg-preview.png"
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-gray-300 mt-20 py-10 px-6">
+    <footer className="bg-gray-800 text-gray-300 py-10 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
 
      

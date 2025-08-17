@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
+import Overview from "./Dashboard/Overview";
 
 const MyProfile = () => {
   const { user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const MyProfile = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`, {
+        .get(`http://localhost:3000/users/role/${user.email}`, {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
@@ -26,7 +27,7 @@ const MyProfile = () => {
         .then((res) => setRole(res.data.role))
         .catch((err) => console.error(err));
       axios
-        .get("https://building-management-server-omega-drab.vercel.app/agreements", {
+        .get("http://localhost:3000/agreements", {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
@@ -40,8 +41,8 @@ const MyProfile = () => {
         .catch((err) => console.error(err));
       axios
         .all([
-          axios.get("https://building-management-server-omega-drab.vercel.app/apartinfo"),
-          axios.get("https://building-management-server-omega-drab.vercel.app/users"),
+          axios.get("http://localhost:3000/apartinfo"),
+          axios.get("http://localhost:3000/users"),
         ])
         .then(
           axios.spread((roomsRes, usersRes) => {
@@ -127,7 +128,9 @@ const MyProfile = () => {
           </>
         )}
       </div>
+      <Overview stats={stats}></Overview>
     </div>
+    
   );
 };
 
