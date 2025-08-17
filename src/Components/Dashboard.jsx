@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
+import { GrOverview } from "react-icons/gr";
 import {
   FaUser,
   FaBullhorn,
@@ -67,8 +68,13 @@ const Dashboard = () => {
                   <FaBullhorn /> Announcements
                 </NavLink>
               </li>
+              
               <li>
-                <NavLink to="/dashboard/overview">Over-View</NavLink>
+                <NavLink to="/dashboard/overview" className={({ isActive }) =>
+                    isActive
+                      ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2"
+                      : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+                  }><GrOverview /> Over-View</NavLink>
               </li>
             </>
           )}
@@ -124,7 +130,11 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/overview">Over-View</NavLink>
+                <NavLink to="/dashboard/overview" className={({ isActive }) =>
+                    isActive
+                      ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2"
+                      : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+                  }><GrOverview /> Over-View</NavLink>
               </li>
             </>
           )}
@@ -191,8 +201,12 @@ const Dashboard = () => {
                   <FaTicketAlt /> Manage Coupons
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/overview">Over-View</NavLink>
+             <li>
+                <NavLink to="/dashboard/overview" className={({ isActive }) =>
+                    isActive
+                      ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2"
+                      : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+                  }><GrOverview /> Over-View</NavLink>
               </li>
             </>
           )}

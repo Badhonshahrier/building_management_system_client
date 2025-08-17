@@ -66,6 +66,7 @@ const Apartment = () => {
       apartmentNo: apartment.apartmentNo,
       rent: apartment.rent,
       requested_date: new Date().toISOString(),
+      room_status:"unavailable",
       status: "pending",
     };
 

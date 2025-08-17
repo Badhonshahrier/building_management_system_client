@@ -128,7 +128,7 @@ const MyProfile = () => {
           </>
         )}
       </div>
-      <Overview stats={stats}></Overview>
+ 
     </div>
     
   );
