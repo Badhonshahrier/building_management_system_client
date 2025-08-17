@@ -18,6 +18,8 @@ import PaymentHistory from "../Components/Dashboard/PaymentHistory";
 import Errorpage from "../Components/Errorpage";
 import Overview from "../Components/Dashboard/Overview";
 import ApartmentDetails from "../Components/ApartmentDetails";
+import Faq from "../Components/Dashboard/Faq";
+import CommunityEvents from "../Components/Booking";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,18 @@ export const router = createBrowserRouter([
       {
         path: "/apartment",
         Component: Apartment,
+      },
+      {
+        path:"/faq",
+        Component:Faq,
+      },
+      {
+        path:"/announcement",
+        Component:Announcement
+      },
+      {
+        path:"/event",
+        Component:CommunityEvents
       },
       {
         path: "/details/:id",

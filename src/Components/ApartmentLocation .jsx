@@ -16,11 +16,11 @@ const ApartmentLocation = () => {
   return (
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="flex items-center justify-center text-4xl font-bold text-gray-600 mb-4 italic">
+        <h2 className="flex items-center justify-center md:text-4xl text-2xl font-bold text-gray-600 mb-4 italic">
           <PiMapPinAreaDuotone className="mr-3 text-green-600 text-5xl" />
           Our Apartment Location
         </h2>
-        <p className="text-center text-gray-600 text-lg mb-10 max-w-3xl mx-auto">
+        <p className="text-center text-gray-600 md:text-lg mb-10 max-w-3xl mx-auto">
           You can easily reach our apartment from anywhere in Dhaka. Here's how
           to find us:
         </p>

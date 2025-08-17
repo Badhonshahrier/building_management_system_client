@@ -2,11 +2,11 @@ import React from "react";
 
 const Faq = () => {
   return (
-    <div className="w-10/12 mx-auto pt-10 pb-10">
-      <h2 className="text-4xl font-bold text-center text-gray-600 italic">
+    <div className="w-10/12 mx-auto pt-10 pb-10 " >
+      <h2 className="md:text-4xl text-2xl font-bold text-center text-gray-600 italic">
         Frequently Asked Questions
       </h2>
-      <p className="text-center font-medium text-gray-500 mb-10 sm:pt-6 max-w-3xl mx-auto text-sm sm:text-base">
+      <p className="text-center mt-4 font-medium text-gray-500 mb-10 sm:pt-6 max-w-3xl mx-auto text-sm sm:text-base">
         "Have questions about how our Building Management System works? Find answers to the most common questions here. Learn about user roles, apartment management, payments, and dashboard features."
       </p>
       <div className="flex w-full flex-col lg:flex-row gap-6">

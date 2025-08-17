@@ -44,7 +44,7 @@ const CommunityEvents = () => {
       <h2 className="text-4xl font-bold text-center text-gray-600 mb-6 italic">
         Community Events 
       </h2>
-      <p className="text-center w-4/6 mx-auto  pb-10 text-gray-800">“Stay connected with your community! Here you’ll find all important building updates, events, and notices — from annual meetings, fire drills, and workshops to fun gatherings like potluck dinners.</p>
+      <p className="text-center md:w-4/6 mx-auto text-sm  pb-10 md:text-gray-800">“Stay connected with your community! Here you’ll find all important building updates, events, and notices — from annual meetings, fire drills, and workshops to fun gatherings like potluck dinners.</p>
 
       <div className="relative bg-base-100 rounded-lg shadow-md p-8 flex flex-col items-center text-center">
         {/* Event Content */}

@@ -25,6 +25,7 @@ const Navbar = () => {
 
   const links = (
     <>
+      {/* Always visible */}
       <li>
         <NavLink
           to="/"
@@ -39,18 +40,54 @@ const Navbar = () => {
         <NavLink
           to="/apartment"
           className={({ isActive }) =>
-            isActive ? "font-bold text-blue-600 underline text-md" : "text-md font-bold"
+            isActive ? "font-bold text-blue-600 underline" : "font-bold"
           }
         >
           Apartment
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/faq"
+          className={({ isActive }) =>
+            isActive ? "font-bold text-blue-600 underline" : "font-bold"
+          }
+        >
+          FAQ
+        </NavLink>
+      </li>
+
+      {/* Visible only if user is logged in */}
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/announcement"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-blue-600 underline" : "font-bold"
+              }
+            >
+              Announcement
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/event"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-blue-600 underline" : "font-bold"
+              }
+            >
+              Event
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
   return (
     <div className="bg-gray-300 sticky top-0 z-50 w-full">
-      <div className="navbar w-11/12 mx-auto">
+      <div className="navbar w-11/12 mx-auto px-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -121,7 +158,9 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/login">
-              <button className="btn bg-gradient-to-r hover:from-green-600 hover:to-emerald-700 text-white text-lg px-10 from-green-500 to-emerald-600 font-bold rounded-xl">Login</button>
+              <button className="btn bg-gradient-to-r hover:from-green-600 hover:to-emerald-700 text-white text-lg px-10 from-green-500 to-emerald-600 font-bold rounded-xl">
+                Login
+              </button>
             </Link>
           )}
         </div>
