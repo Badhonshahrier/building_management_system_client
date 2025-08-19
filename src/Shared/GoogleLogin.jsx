@@ -21,7 +21,7 @@ const GoogleLogin = () => {
         };
 
         // Insert user directly (no check)
-        axios.post("http://localhost:3000/users", newUser)
+        axios.post("https://building-management-server-omega-drab.vercel.app/users", newUser)
           .then(() => {
             Swal.fire({
               icon: "success",

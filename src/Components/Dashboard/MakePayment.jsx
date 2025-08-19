@@ -15,7 +15,7 @@ const MakePayment = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get("http://localhost:3000/agreements", {
+        .get("https://building-management-server-omega-drab.vercel.app/agreements", {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
@@ -35,7 +35,7 @@ const MakePayment = () => {
     if (!couponCode) return;
 
     axios
-      .get("http://localhost:3000/addcoupons")
+      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
       .then((res) => {
         const matched = res.data.find(
           (c) =>

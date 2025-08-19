@@ -26,11 +26,11 @@
 
 //   useEffect(() => {
 //     axios
-//       .get("http://localhost:3000/users")
+//       .get("https://building-management-server-omega-drab.vercel.app/users")
 //       .then((res) => setUsers(res.data))
 //       .catch((error) => console.log(error));
 //     axios
-//       .get("http://localhost:3000/agreements", {
+//       .get("https://building-management-server-omega-drab.vercel.app/agreements", {
 //         headers: {
 //           authorization: `Bearer ${user.accessToken}`,
 //         },
@@ -39,7 +39,7 @@
 //       .catch((error) => console.log(error));
 
 //     axios
-//       .get("http://localhost:3000/apartInfo")
+//       .get("https://building-management-server-omega-drab.vercel.app/apartInfo")
 //       .then((res) => setRooms(res.data))
 //       .catch((error) => console.log(error));
 //   }, [user.accessToken]);
@@ -169,13 +169,13 @@ const Overview = () => {
         setError(null)
 
         const [usersRes, agreementsRes, roomsRes] = await Promise.all([
-          axios.get("http://localhost:3000/users"),
-          axios.get("http://localhost:3000/agreements", {
+          axios.get("https://building-management-server-omega-drab.vercel.app/users"),
+          axios.get("https://building-management-server-omega-drab.vercel.app/agreements", {
             headers: {
               authorization: `Bearer ${user.accessToken}`,
             },
           }),
-          axios.get("http://localhost:3000/apartInfo"),
+          axios.get("https://building-management-server-omega-drab.vercel.app/apartInfo"),
         ])
 
         setUsers(usersRes.data)

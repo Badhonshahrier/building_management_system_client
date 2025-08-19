@@ -10,7 +10,7 @@ const ManageCoupons = () => {
   const fetchCoupons = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:3000/addcoupons");
+      const res = await axios.get("https://building-management-server-omega-drab.vercel.app/addcoupons");
       setCoupons(res.data);
     } catch (err) {
       console.error(err);
@@ -35,7 +35,7 @@ const ManageCoupons = () => {
     };
 
     try {
-      const res = await axios.post("http://localhost:3000/addcoupons", newCoupon);
+      const res = await axios.post("https://building-management-server-omega-drab.vercel.app/addcoupons", newCoupon);
       if (res.data.insertedId || res.data.acknowledged) {
         fetchCoupons();
         form.reset();
@@ -50,7 +50,7 @@ const ManageCoupons = () => {
     try {
       setProcessingId(id);
       const newStatus = currentStatus === "active" ? "inactive" : "active";
-      await axios.patch(`http://localhost:3000/addcoupons/${id}`, { status: newStatus });
+      await axios.patch(`https://building-management-server-omega-drab.vercel.app/addcoupons/${id}`, { status: newStatus });
       setCoupons((prev) =>
         prev.map((c) => (c._id === id ? { ...c, status: newStatus } : c))
       );

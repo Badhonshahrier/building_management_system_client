@@ -7,7 +7,7 @@
 //   const { user } = use(AuthContext);
 //   useEffect(() => {
 //     axios
-//       .get("http://localhost:3000/users")
+//       .get("https://building-management-server-omega-drab.vercel.app/users")
 //       .then((res) => {
 //         const existingMember = res.data.filter(
 //           (member) => member.role === "member"
@@ -19,7 +19,7 @@
 //   const handleRemoveRole = (id) => {
 //     axios
 //       .patch(
-//         `http://localhost:3000/users/role-user/${id}`,
+//         `https://building-management-server-omega-drab.vercel.app/users/role-user/${id}`,
 //         {
 //           headers: {
 //             authorization: `Bearer ${user.accessToken}`,
@@ -30,7 +30,7 @@
 //         if (res.data.modifiedCount > 0) {
 //           axios
 //             .get(
-//               "http://localhost:3000/users"
+//               "https://building-management-server-omega-drab.vercel.app/users"
 //             )
 //             .then((res) => {
 //               const membersOnly = res.data.filter((u) => u.role === "member");
@@ -91,7 +91,7 @@ const ManageMembers = () => {
   const fetchMembers = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:3000/users");
+      const res = await axios.get("https://building-management-server-omega-drab.vercel.app/users");
       const membersOnly = res.data.filter((member) => member.role === "member");
       setMembers(membersOnly);
     } catch (err) {
@@ -109,7 +109,7 @@ const ManageMembers = () => {
     try {
       setProcessingId(id);
       const res = await axios.patch(
-        `http://localhost:3000/users/role-user/${id}`,
+        `https://building-management-server-omega-drab.vercel.app/users/role-user/${id}`,
         {},
         { headers: { authorization: `Bearer ${user.accessToken}` } }
       );

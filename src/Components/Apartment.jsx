@@ -18,7 +18,7 @@ const Apartment = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/apartinfo")
+      .get("https://building-management-server-omega-drab.vercel.app/apartinfo")
       .then((res) => setApartInfo(res.data))
       .catch((error) => console.error(error));
   }, []);
@@ -75,7 +75,7 @@ const Apartment = () => {
     };
     console.log(agreementData);
     axios
-      .post("http://localhost:3000/agreement", agreementData, {
+      .post("https://building-management-server-omega-drab.vercel.app/agreement", agreementData, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
         },
