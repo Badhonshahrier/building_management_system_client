@@ -1,3 +1,162 @@
+// import { createBrowserRouter } from "react-router";
+// import MainLayout from "../Layouts/MainLayout";
+// import HomePage from "../Pages/HomePage";
+// import Login from "../Pages/Login";
+// import Register from "../Pages/Register";
+// import Apartment from "../Components/Apartment";
+// import Dashboard from "../Components/Dashboard";
+// import MyProfile from "../Components/MyProfile";
+// import ManageMembers from "../Components/Dashboard/ManageMembers";
+// import MakeAnnouncement from "../Components/Dashboard/MakeAnnouncement";
+// import AgreementRequests from "../Components/Dashboard/AgreementRequests";
+// import ManageCoupons from "../Components/Dashboard/ManageCoupons";
+// import MakePayment from "../Components/Dashboard/MakePayment";
+// import RentPayment from "../Components/RentPayment";
+// import PrivateRoutes from "./PrivateRoute";
+// import Announcement from "../Components/Announcement";
+// import PaymentHistory from "../Components/Dashboard/PaymentHistory";
+// import Errorpage from "../Components/Errorpage";
+// import Overview from "../Components/Dashboard/Overview";
+// import ApartmentDetails from "../Components/ApartmentDetails";
+// import Faq from "../Components/Dashboard/Faq";
+// import CommunityEvents from "../Components/Booking";
+
+// export const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <MainLayout></MainLayout>,
+//     errorElement: <Errorpage></Errorpage>,
+//     children: [
+//       {
+//         index: true,
+//         Component: HomePage,
+//       },
+//       {
+//         path: "/login",
+//         Component: Login,
+//       },
+//       {
+//         path: "/register",
+//         Component: Register,
+//       },
+//       {
+//         path: "/apartment",
+//         Component: Apartment,
+//       },
+//       {
+//         path:"/faq",
+//         Component:Faq,
+//       },
+//       {
+//         path:"/announcement",
+//         Component:Announcement
+//       },
+//       {
+//         path:"/event",
+//         Component:CommunityEvents
+//       },
+//       {
+//         path: "/details/:id",
+//         Component: ApartmentDetails,
+//         loader:({params})=>fetch(`http://localhost:3000/apartInfo/${params.id}`)
+//       },
+//       {
+//         path: "/dashboard",
+//         element: (
+//           <PrivateRoutes>
+//             <Dashboard></Dashboard>
+//           </PrivateRoutes>
+//         ),
+//         children: [
+//           {
+//             index:true,
+//             path: "overview",
+//             element: (
+//               <PrivateRoutes>
+//                 <Overview></Overview>
+//               </PrivateRoutes>
+//             ),
+//           },
+//           {
+//             path: "myprofile",
+//             element: (
+//               <PrivateRoutes>
+//                 <MyProfile></MyProfile>
+//               </PrivateRoutes>
+//             ),
+//           },
+//           {
+//             path: "managemembers",
+//             element: (
+//               <PrivateRoutes>
+//                 <ManageMembers></ManageMembers>
+//               </PrivateRoutes>
+//             ),
+//           },
+//           {
+//             path: "makeannouncement",
+//             element: (
+//               <PrivateRoutes>
+//                 <MakeAnnouncement></MakeAnnouncement>
+//               </PrivateRoutes>
+//             ),
+//           },
+//           {
+//             path: "agreementrequests",
+//             element: (
+//               <PrivateRoutes>
+//                 <AgreementRequests></AgreementRequests>
+//               </PrivateRoutes>
+//             ),
+//           },
+//           {
+//             path: "managecoupons",
+//             element: (
+//               <PrivateRoutes>
+//                 <ManageCoupons></ManageCoupons>
+//               </PrivateRoutes>
+//             ),
+//           },
+//           {
+//             path: "makepayment",
+//             element: (
+//               <PrivateRoutes>
+//                 <MakePayment></MakePayment>
+//               </PrivateRoutes>
+//             ),
+//           },
+//           {
+//             path: "payment/:id",
+//             element: (
+//               <PrivateRoutes>
+//                 <RentPayment></RentPayment>
+//               </PrivateRoutes>
+//             ),
+//           },
+//           {
+//             path: "announcement",
+//             element: (
+//               <PrivateRoutes>
+//                 <Announcement></Announcement>
+//               </PrivateRoutes>
+//             ),
+//           },
+//           {
+//             path: "paymenthistory",
+//             element: (
+//               <PrivateRoutes>
+//                 <PaymentHistory></PaymentHistory>
+//               </PrivateRoutes>
+//             ),
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ]);
+
+
+
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layouts/MainLayout";
 import HomePage from "../Pages/HomePage";
@@ -24,8 +183,8 @@ import CommunityEvents from "../Components/Booking";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout></MainLayout>,
-    errorElement: <Errorpage></Errorpage>,
+    element: <MainLayout />,
+    errorElement: <Errorpage />,
     children: [
       {
         index: true,
@@ -44,35 +203,46 @@ export const router = createBrowserRouter([
         Component: Apartment,
       },
       {
-        path:"/faq",
-        Component:Faq,
+        path: "/faq",
+        Component: Faq,
       },
       {
-        path:"/announcement",
-        Component:Announcement
+        path: "/announcement",
+        Component: Announcement,
       },
       {
-        path:"/event",
-        Component:CommunityEvents
+        path: "/event",
+        Component: CommunityEvents,
       },
       {
         path: "/details/:id",
         Component: ApartmentDetails,
-        loader:({params})=>fetch(`https://building-management-server-omega-drab.vercel.app/apartInfo/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/apartInfo/${params.id}`),
       },
       {
         path: "/dashboard",
         element: (
           <PrivateRoutes>
-            <Dashboard></Dashboard>
+            <Dashboard />
           </PrivateRoutes>
         ),
         children: [
+          // ✅ Default child (when visiting /dashboard directly)
+          {
+            index: true,
+            element: (
+              <PrivateRoutes>
+                <Overview />
+              </PrivateRoutes>
+            ),
+          },
+          // ✅ Explicit route for /dashboard/overview
           {
             path: "overview",
             element: (
               <PrivateRoutes>
-                <Overview></Overview>
+                <Overview />
               </PrivateRoutes>
             ),
           },
@@ -80,7 +250,7 @@ export const router = createBrowserRouter([
             path: "myprofile",
             element: (
               <PrivateRoutes>
-                <MyProfile></MyProfile>
+                <MyProfile />
               </PrivateRoutes>
             ),
           },
@@ -88,7 +258,7 @@ export const router = createBrowserRouter([
             path: "managemembers",
             element: (
               <PrivateRoutes>
-                <ManageMembers></ManageMembers>
+                <ManageMembers />
               </PrivateRoutes>
             ),
           },
@@ -96,7 +266,7 @@ export const router = createBrowserRouter([
             path: "makeannouncement",
             element: (
               <PrivateRoutes>
-                <MakeAnnouncement></MakeAnnouncement>
+                <MakeAnnouncement />
               </PrivateRoutes>
             ),
           },
@@ -104,7 +274,7 @@ export const router = createBrowserRouter([
             path: "agreementrequests",
             element: (
               <PrivateRoutes>
-                <AgreementRequests></AgreementRequests>
+                <AgreementRequests />
               </PrivateRoutes>
             ),
           },
@@ -112,7 +282,7 @@ export const router = createBrowserRouter([
             path: "managecoupons",
             element: (
               <PrivateRoutes>
-                <ManageCoupons></ManageCoupons>
+                <ManageCoupons />
               </PrivateRoutes>
             ),
           },
@@ -120,7 +290,7 @@ export const router = createBrowserRouter([
             path: "makepayment",
             element: (
               <PrivateRoutes>
-                <MakePayment></MakePayment>
+                <MakePayment />
               </PrivateRoutes>
             ),
           },
@@ -128,7 +298,7 @@ export const router = createBrowserRouter([
             path: "payment/:id",
             element: (
               <PrivateRoutes>
-                <RentPayment></RentPayment>
+                <RentPayment />
               </PrivateRoutes>
             ),
           },
@@ -136,7 +306,7 @@ export const router = createBrowserRouter([
             path: "announcement",
             element: (
               <PrivateRoutes>
-                <Announcement></Announcement>
+                <Announcement />
               </PrivateRoutes>
             ),
           },
@@ -144,7 +314,7 @@ export const router = createBrowserRouter([
             path: "paymenthistory",
             element: (
               <PrivateRoutes>
-                <PaymentHistory></PaymentHistory>
+                <PaymentHistory />
               </PrivateRoutes>
             ),
           },

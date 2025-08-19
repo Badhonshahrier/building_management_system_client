@@ -1,90 +1,59 @@
-import React, { useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useState } from "react";
+import { Mail } from "lucide-react";
+import Swal from "sweetalert2";
 
-const events = [
-  {
-    id: 1,
-    title: "Annual Tenant Meeting",
-    date: "25th Aug 2025",
-    description: "Discussion about building maintenance & future plans.",
-  },
-  {
-    id: 2,
-    title: "Fire Drill Reminder",
-    date: "1st Sep 2025",
-    description: "Mandatory safety drill for all residents at 10 AM.",
-  },
-  {
-    id: 3,
-    title: "Community Potluck Dinner",
-    date: "15th Sep 2025",
-    description: "Bring your favorite dish and enjoy an evening with neighbors.",
-  },
-  {
-    id: 4,
-    title: "Gym Maintenance Notice",
-    date: "20th Sep 2025",
-    description: "Gym will be closed for deep cleaning and equipment check.",
-  },
-];
+const Booking = () => {
+  const [email, setEmail] = useState("");
 
-const CommunityEvents = () => {
-  const [current, setCurrent] = useState(0);
+  const handleSubscribe = (e) => {
+    e.preventDefault();
 
-  const prevSlide = () => {
-    setCurrent((prev) => (prev === 0 ? events.length - 1 : prev - 1));
-  };
+    if (!email) {
+      Swal.fire("Please enter your email!");
+      return;
+    }
+    console.log("Subscribed with:", email);
 
-  const nextSlide = () => {
-    setCurrent((prev) => (prev === events.length - 1 ? 0 : prev + 1));
+    Swal.fire("Subscribed successfully!");
+    setEmail("");
   };
 
   return (
-    <div className="w-11/12 md:w-10/12 mx-auto pt-10 pb-10">
-      <h2 className="text-4xl font-bold text-center text-gray-600 mb-6 italic">
-        Community Events 
-      </h2>
-      <p className="text-center md:w-4/6 mx-auto text-sm  pb-10 md:text-gray-800">“Stay connected with your community! Here you’ll find all important building updates, events, and notices — from annual meetings, fire drills, and workshops to fun gatherings like potluck dinners.</p>
+    <div className="w-full py-12 px-6 mt-16">
+      <div className="max-w-5xl mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-green-900">
+          Subscribe to Our Newsletter
+        </h2>
+        <p className="mt-3 text-gray-700 max-w-2xl mx-auto">
+          Stay updated with the latest gardening tips, announcements, and
+          community news straight to your inbox.
+        </p>
 
-      <div className="relative bg-base-100 rounded-lg shadow-md p-8 flex flex-col items-center text-center">
-        {/* Event Content */}
-        <h3 className="text-2xl font-semibold text-indigo-700">
-          {events[current].title}
-        </h3>
-        <p className="text-gray-500 text-sm mt-2">{events[current].date}</p>
-        <p className="mt-4 text-gray-600">{events[current].description}</p>
-
-        {/* Navigation Arrows */}
-        <div className="flex justify-between w-full absolute top-1/2 transform -translate-y-1/2 px-4">
+        <form
+          onSubmit={handleSubscribe}
+          className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3"
+        >
+          <div className="relative w-full sm:w-96">
+            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
           <button
-            onClick={prevSlide}
-            className="bg-indigo-500 text-white p-2 rounded-full shadow-md hover:bg-indigo-600"
+            type="submit"
+            className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-semibold shadow-md transition"
           >
-            <FaChevronLeft />
+            Subscribe
           </button>
-          <button
-            onClick={nextSlide}
-            className="bg-indigo-500 text-white p-2 rounded-full shadow-md hover:bg-indigo-600"
-          >
-            <FaChevronRight />
-          </button>
-        </div>
-
-        {/* Dots Indicator */}
-        <div className="flex gap-2 mt-6">
-          {events.map((_, index) => (
-            <div
-              key={index}
-              className={`w-3 h-3 rounded-full cursor-pointer ${
-                current === index ? "bg-indigo-600" : "bg-gray-300"
-              }`}
-              onClick={() => setCurrent(index)}
-            ></div>
-          ))}
-        </div>
+        </form>
       </div>
     </div>
   );
 };
 
-export default CommunityEvents;
+export default Booking;

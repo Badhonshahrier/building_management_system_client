@@ -88,10 +88,10 @@ const Navbar = () => {
 
   return (
     <div className="bg-gray-300 sticky top-0 z-50 w-full">
-      <div className="navbar w-11/12 mx-auto px-4">
+      <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className=" lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -111,15 +111,15 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <img className="h-13 w-13 object-cover" src={NavImg} alt="" />
-          <span className="ml-1 text-xl italic font-bold">BuildingManager</span>
+          <img className="h-13 w-13 object-cover ml-2 md:ml-0 md:block lg:block" src={NavImg} alt="" />
+          <span className="ml-1 text-xl italic font-bold hidden md:block lg:block">BuildingManager</span>
         </div>
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
 
-        <div className="navbar-end gap-5">
+        <div className="navbar-end md:gap-5 gap-3">
           <ThemeToggle></ThemeToggle>
           {user ? (
             <div className="dropdown dropdown-end">
@@ -136,7 +136,7 @@ const Navbar = () => {
                   {user.displayName}
                 </li>
                 <li>
-                  <Link to="/dashboard/myprofile">
+                  <Link to="/dashboard/overview">
                     <button
                       className="font-bold mb-6"
                       onClick={() => {
@@ -160,7 +160,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/login">
-              <button className="btn bg-gradient-to-r hover:from-green-600 hover:to-emerald-700 text-white text-lg px-10 from-green-500 to-emerald-600 font-bold rounded-xl">
+              <button className="btn bg-gradient-to-r hover:from-green-600 hover:to-emerald-700 text-white md:text-lg md:px-10 px-6 from-green-500 to-emerald-600 font-bold rounded-xl">
                 Login
               </button>
             </Link>

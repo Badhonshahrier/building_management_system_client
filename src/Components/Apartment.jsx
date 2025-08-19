@@ -18,7 +18,7 @@ const Apartment = () => {
 
   useEffect(() => {
     axios
-      .get("https://building-management-server-omega-drab.vercel.app/apartinfo")
+      .get("http://localhost:3000/apartinfo")
       .then((res) => setApartInfo(res.data))
       .catch((error) => console.error(error));
   }, []);
@@ -75,7 +75,7 @@ const Apartment = () => {
     };
     console.log(agreementData);
     axios
-      .post("https://building-management-server-omega-drab.vercel.app/agreement", agreementData, {
+      .post("http://localhost:3000/agreement", agreementData, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
         },
@@ -104,7 +104,9 @@ const Apartment = () => {
           <button
             onClick={() => setSortOrder("asc")}
             className={`btn ${
-              sortOrder === "asc" ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 rounded transition-all py-2 px-4 text-white" : "btn-outline"
+              sortOrder === "asc"
+                ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 rounded transition-all py-2 px-4 text-white"
+                : "btn-outline"
             }`}
           >
             Price Asc
@@ -112,7 +114,9 @@ const Apartment = () => {
           <button
             onClick={() => setSortOrder("desc")}
             className={`btn ${
-              sortOrder === "desc" ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 rounded transition-all py-2 px-4 text-white" : "btn-outline"
+              sortOrder === "desc"
+                ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 rounded transition-all py-2 px-4 text-white"
+                : "btn-outline"
             }`}
           >
             Price Desc
@@ -149,14 +153,15 @@ const Apartment = () => {
               <div className="flex pt-4 justify-between items-center">
                 <button
                   onClick={() => handleAgreement(apt)}
-                  className="w-1/2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
+                  className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
                 >
-                  Apply for Agreement
+              Agreement
                 </button>
                 <NavLink to={`/details/${apt._id}`}>
-                <button className="btn bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded transition-all py-2 px-4">
-                  see more
-                </button></NavLink>
+                  <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-5 rounded transition-all duration-300 ">
+                    See more
+                  </button>
+                </NavLink>
               </div>
             </div>
           </div>

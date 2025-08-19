@@ -16,7 +16,7 @@ const handleRegister = (e) => {
   const dataObject = Object.fromEntries(formData.entries());
   dataObject.role = "user";
 
-  const { name, photoURL, email, password } = dataObject;
+  const { name, photoURL, email, password,phoneNumber,address } = dataObject;
 
   if (password.length < 6) {
     return Swal.fire({
@@ -43,10 +43,10 @@ const handleRegister = (e) => {
   }
   createUser(email, password)
     .then(() => {
-      userProfile({ displayName: name, photoURL })
+      userProfile({ displayName: name, photoURL,phoneNumber,address })
         .then(() => {
           axios
-            .post("https://building-management-server-omega-drab.vercel.app/users", dataObject)
+            .post("http://localhost:3000/users", dataObject)
             .then(() => {
               Swal.fire({
                 position: "center",
@@ -106,6 +106,24 @@ const handleRegister = (e) => {
                   type="text"
                   className="input input-bordered w-full"
                   placeholder="Paste image link from imgbb or others"
+                />
+              </div>
+              <div>
+                <label className="label text-gray-400 text-lg">Phone Number</label>
+                <input
+                  name="number"
+                  type="number"
+                  className="input input-bordered w-full"
+                  placeholder="Inter Your Mobile Number"
+                />
+              </div>
+              <div>
+                <label className="label text-gray-400 text-lg">Address</label>
+                <input
+                  name="address"
+                  type="text"
+                  className="input input-bordered w-full"
+                  placeholder="Inter Your Address Here"
                 />
               </div>
               <div>

@@ -19,7 +19,7 @@ const CheckoutForm = () => {
 
   useEffect(() => {
     if (rent > 0) {
-      axios.post("https://building-management-server-omega-drab.vercel.app/create-payment-intent", { price: rent })
+      axios.post("http://localhost:3000/create-payment-intent", { price: rent })
         .then(res => {
           setClientSecret(res.data.clientSecret);
         })
@@ -80,7 +80,7 @@ const CheckoutForm = () => {
         month,
       };
 
-      axios.post("https://building-management-server-omega-drab.vercel.app/payments", paymentData)
+      axios.post("http://localhost:3000/payments", paymentData)
         .then(() => {
           Swal.fire("Success", "Payment Successful!", "success");
           navigate("/dashboard/paymenthistory");

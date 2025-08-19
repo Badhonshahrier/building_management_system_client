@@ -20,14 +20,18 @@ const AboutBuilding = () => {
       <h1 className="text-center pt-20 text-4xl text-gray-600 font-bold italic ">
         About Building
       </h1>
-      <p className="text-center w-4/6 mx-auto pt-3 pb-6 text-gray-800">An apartment management system helps organize and streamline daily operations for residential complexes. It manages tenant information, rent payments, maintenance requests, agreements, and announcements.</p>
-      <section className="bg-gray-300 w-10/12 mx-auto rounded-3xl px-4 lg:px-0 py-10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <p className="text-center w-4/6 mx-auto pt-3 pb-6 text-gray-800">
+        An apartment management system helps organize and streamline daily
+        operations for residential complexes. It manages tenant information,
+        rent payments, maintenance requests, agreements, and announcements.
+      </p>
+      <section className="bg-gray-300 w-11/12 mx-auto rounded-3xl px-4 lg:px-0 py-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div data-aos="fade-in">
             <img
               src="https://i.ibb.co/fd4PTGSd/apartment-apartment-building-architecture-323705.jpg"
               alt=""
-              className="rounded-2xl shadow-lg h-[500px] w-full object-cover"
+              className="rounded-2xl shadow-lg h-[600px] w-full object-cover"
             />
           </div>
 

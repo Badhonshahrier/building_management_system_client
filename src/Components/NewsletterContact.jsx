@@ -23,7 +23,7 @@ const NewsletterContact = () => {
   };
 
   return (
-    <div className="w-11/12 md:w-10/12 mx-auto py-20">
+    <div className="w-11/12 md:w-11/12 mx-auto py-20">
       <h2 className="text-4xl font-bold text-center text-gray-600 mb-4 italic">
         Stay Connected
       </h2>

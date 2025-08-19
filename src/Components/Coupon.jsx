@@ -10,7 +10,7 @@ const Coupon = () => {
 
   useEffect(() => {
     axios
-      .get("https://building-management-server-omega-drab.vercel.app/addcoupons")
+      .get("http://localhost:3000/addcoupons")
       .then((res) => setCoupons(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -54,7 +54,7 @@ const Coupon = () => {
       </motion.p>
 
       {/* Main Section */}
-      <div className="p-6 bg-gray-200 rounded-2xl max-w-7xl mx-auto shadow-lg">
+      <div className="p-6 bg-gray-200 rounded-2xl w-11/12 mx-auto shadow-lg">
         {coupons.length === 0 ? (
           <motion.div
             className="flex flex-col items-center justify-center py-16 text-gray-500"
@@ -149,7 +149,7 @@ const Coupon = () => {
 
                     <div
                       className={`inline-block text-sm px-3 py-1 rounded-full font-semibold ${
-                        coupon.status === "Active"
+                        coupon.status === "active"
                           ? "bg-emerald-100 text-emerald-800"
                           : "bg-red-100 text-red-700"
                       }`}

@@ -29,7 +29,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-base-200 flex flex-col md:flex-row items-center justify-center">
       <div className="w-full md:w-1/4 flex justify-center">
-        <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
+        <div className="card bg-base-100 w-full max-w-sm mt-10 md:mt-0 lg:mt-0 shadow-2xl">
           <div className="card-body">
             <h2 className="text-3xl font-bold text-center italic mb-4">
               Please Login Here
@@ -65,7 +65,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="">
+      <div >
         <Lottie
           animationData={loginLottie}
           loop={true}

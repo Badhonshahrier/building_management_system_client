@@ -18,7 +18,7 @@ const Dashboard = () => {
   const [role, setRole] = useState("");
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`, {
+      fetch(`http://localhost:3000/users/role/${user.email}`, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
         },
@@ -28,9 +28,11 @@ const Dashboard = () => {
         .catch((error) => console.log(error));
     }
   }, [user?.email, user.accessToken]);
+
+  
   
   return (
-    <div className="drawer lg:drawer-open min-h-screen">
+    <div className="drawer bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 lg:drawer-open min-h-screen">
       <input
         id="my-drawer"
         type="checkbox"
@@ -40,22 +42,11 @@ const Dashboard = () => {
       <div className="drawer-content p-4">
         <Outlet />
       </div>
-      <div className="drawer-side">
-        <ul className="menu p-4 w-full h-full space-y-2 bg-base-200 font-medium">
+      <div className="drawer-side  ml-50 md:ml-0 lg:ml-0 mt-16 md:mt-0 lg:mt-0">
+        <ul className="menu  p-4 lg:w-full lg:h-full md:h-full md:ml-136 md:mt-16 lg:ml-0 lg:mt-0 space-y-2 bg-base-300 font-medium">
           {role === "user" && (
             <>
-              <li>
-                <NavLink
-                  to="/dashboard/myprofile"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2"
-                      : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
-                  }
-                >
-                  <FaUser /> My Profile
-                </NavLink>
-              </li>
+              
               <li>
                 <NavLink
                   to="/dashboard/announcement"
@@ -75,6 +66,18 @@ const Dashboard = () => {
                       ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2"
                       : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
                   }><GrOverview /> Over-View</NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/myprofile"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2"
+                      : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
+                  }
+                >
+                  <FaUser /> My Profile
+                </NavLink>
               </li>
             </>
           )}
@@ -141,17 +144,12 @@ const Dashboard = () => {
 
           {role === "admin" && (
             <>
-              <li>
-                <NavLink
-                  to="/dashboard/myprofile"
-                  className={({ isActive }) =>
+               <li>
+                <NavLink to="/dashboard/overview" className={({ isActive }) =>
                     isActive
                       ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2"
                       : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
-                  }
-                >
-                  <FaUser /> Admin Profile
-                </NavLink>
+                  }><GrOverview /> Over-View</NavLink>
               </li>
               <li>
                 <NavLink
@@ -201,12 +199,18 @@ const Dashboard = () => {
                   <FaTicketAlt /> Manage Coupons
                 </NavLink>
               </li>
-             <li>
-                <NavLink to="/dashboard/overview" className={({ isActive }) =>
+            
+              <li>
+                <NavLink
+                  to="/dashboard/myprofile"
+                  className={({ isActive }) =>
                     isActive
                       ? "bg-amber-300 rounded px-3 py-2 flex items-center gap-2"
                       : "px-3 py-2 flex items-center gap-2 hover:bg-gray-100 rounded"
-                  }><GrOverview /> Over-View</NavLink>
+                  }
+                >
+                  <FaUser /> Admin Profile
+                </NavLink>
               </li>
             </>
           )}
