@@ -58,7 +58,7 @@
 //       {
 //         path: "/details/:id",
 //         Component: ApartmentDetails,
-//         loader:({params})=>fetch(`https://building-management-server-omega-drab.vercel.app/apartInfo/${params.id}`)
+//         loader:({params})=>fetch(`http://localhost:3000/apartInfo/${params.id}`)
 //       },
 //       {
 //         path: "/dashboard",
@@ -218,7 +218,7 @@ export const router = createBrowserRouter([
         path: "/details/:id",
         Component: ApartmentDetails,
         loader: ({ params }) =>
-          fetch(`https://building-management-server-omega-drab.vercel.app/apartInfo/${params.id}`),
+          fetch(`http://localhost:3000/apartInfo/${params.id}`),
       },
       {
         path: "/dashboard",

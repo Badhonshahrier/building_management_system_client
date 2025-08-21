@@ -18,7 +18,7 @@ const Dashboard = () => {
   const [role, setRole] = useState("");
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`, {
+      fetch(`http://localhost:3000/users/role/${user.email}`, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
         },

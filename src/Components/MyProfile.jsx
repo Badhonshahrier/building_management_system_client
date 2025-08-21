@@ -19,7 +19,7 @@
 //   useEffect(() => {
 //     if (user?.email) {
 //       axios
-//         .get(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`, {
+//         .get(`http://localhost:3000/users/role/${user.email}`, {
 //           headers: {
 //             Authorization: `Bearer ${user.accessToken}`,
 //           },
@@ -27,7 +27,7 @@
 //         .then((res) => setRole(res.data.role))
 //         .catch((err) => console.error(err));
 //       axios
-//         .get("https://building-management-server-omega-drab.vercel.app/agreements", {
+//         .get("http://localhost:3000/agreements", {
 //           headers: {
 //             Authorization: `Bearer ${user.accessToken}`,
 //           },
@@ -41,8 +41,8 @@
 //         .catch((err) => console.error(err));
 //       axios
 //         .all([
-//           axios.get("https://building-management-server-omega-drab.vercel.app/apartinfo"),
-//           axios.get("https://building-management-server-omega-drab.vercel.app/users"),
+//           axios.get("http://localhost:3000/apartinfo"),
+//           axios.get("http://localhost:3000/users"),
 //         ])
 //         .then(
 //           axios.spread((roomsRes, usersRes) => {
@@ -153,7 +153,7 @@ const MyProfile = () => {
     if (user?.email) {
       setLoading(true);
       axios
-        .get(`https://building-management-server-omega-drab.vercel.app/users/role/${user.email}`, {
+        .get(`http://localhost:3000/users/role/${user.email}`, {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
@@ -161,7 +161,7 @@ const MyProfile = () => {
         .then((res) => setRole(res.data.role))
         .catch((err) => console.error(err));
       axios
-        .get("https://building-management-server-omega-drab.vercel.app/agreements", {
+        .get("http://localhost:3000/agreements", {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
@@ -373,6 +373,9 @@ const MyProfile = () => {
                     Phone Number
                   </label>
                   <p className="text-lg font-semibold text-gray-900">+88012345678</p>
+                  <label className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                    Address
+                  </label>
                   <div className="text-lg font-semibold text-gray-900">
                    <h3>Rangpur</h3>
                   </div>

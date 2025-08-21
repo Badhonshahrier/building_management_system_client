@@ -6,7 +6,7 @@
 //   const { user } = use(AuthContext);
 //   const [agreeReq, setAgreeReq] = useState([]);
 //   useEffect(() => {
-//     fetch("https://building-management-server-omega-drab.vercel.app/agreements", {
+//     fetch("http://localhost:3000/agreements", {
 //       headers: {
 //         authorization: `Bearer ${user.accessToken}`,
 //       },
@@ -17,7 +17,7 @@
 
 //   const handleAccept = (id) => {
 //     axios
-//       .patch(`https://building-management-server-omega-drab.vercel.app/agreements/accept/${id}`,{}, {
+//       .patch(`http://localhost:3000/agreements/accept/${id}`,{}, {
 //         headers: {
 //           authorization: `Bearer ${user.accessToken}`,
 //         },
@@ -31,7 +31,7 @@
 
 //   const handleReject = (id) => {
 //     axios
-//       .patch(`https://building-management-server-omega-drab.vercel.app/agreements/reject/${id}`,{}, {
+//       .patch(`http://localhost:3000/agreements/reject/${id}`,{}, {
 //         headers: {
 //           authorization: `Bearer ${user.accessToken}`,
 //         },
@@ -121,7 +121,7 @@ const AgreementRequests = () => {
 
       try {
         setLoading(true)
-        const response = await fetch("https://building-management-server-omega-drab.vercel.app/agreements", {
+        const response = await fetch("http://localhost:3000/agreements", {
           headers: { authorization: `Bearer ${user.accessToken}` },
         })
 
@@ -144,7 +144,7 @@ const AgreementRequests = () => {
     if (!user.accessToken) return
     try {
       setLoading(true)
-      const response = await fetch("https://building-management-server-omega-drab.vercel.app/agreements", {
+      const response = await fetch("http://localhost:3000/agreements", {
         headers: { authorization: `Bearer ${user.accessToken}` },
       })
       const data = await response.json()
@@ -161,7 +161,7 @@ const AgreementRequests = () => {
     try {
       setProcessingId(id)
       await axios.patch(
-        `https://building-management-server-omega-drab.vercel.app/agreements/${action}/${id}`,
+        `http://localhost:3000/agreements/${action}/${id}`,
         {},
         { headers: { authorization: `Bearer ${user.accessToken}` } }
       )

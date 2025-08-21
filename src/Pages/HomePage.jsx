@@ -18,8 +18,8 @@ const HomePage = () => {
       <Coupon></Coupon>
       <Announcement></Announcement>
       <ApartmentLocation></ApartmentLocation>
-
       <ReviewSection></ReviewSection>
+      <NewsletterContact></NewsletterContact>
       <Faq></Faq>
       <Booking></Booking>
     </div>

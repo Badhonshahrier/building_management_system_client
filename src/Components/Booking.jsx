@@ -19,14 +19,14 @@ const Booking = () => {
   };
 
   return (
-    <div className="w-full py-12 px-6 mt-16">
+    <div className="w-full py-12 px-6 bg-gray-200 mt-16">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-green-900">
           Subscribe to Our Newsletter
         </h2>
         <p className="mt-3 text-gray-700 max-w-2xl mx-auto">
-          Stay updated with the latest gardening tips, announcements, and
-          community news straight to your inbox.
+          Stay updated with the latest Rent price, announcements, and
+          community news straight to your inbox.Thank You
         </p>
 
         <form
@@ -38,7 +38,7 @@ const Booking = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
+              className="w-full pl-10 pr-4 py-3 rounded-xl text-black border border-gray-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

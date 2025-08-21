@@ -26,7 +26,7 @@ const AboutBuilding = () => {
         rent payments, maintenance requests, agreements, and announcements.
       </p>
       <section className="bg-gray-300 w-11/12 mx-auto rounded-3xl px-4 lg:px-0 py-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div data-aos="fade-in">
             <img
               src="https://i.ibb.co/fd4PTGSd/apartment-apartment-building-architecture-323705.jpg"

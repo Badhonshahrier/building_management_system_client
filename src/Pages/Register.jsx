@@ -46,7 +46,7 @@ const handleRegister = (e) => {
       userProfile({ displayName: name, photoURL,phoneNumber,address })
         .then(() => {
           axios
-            .post("https://building-management-server-omega-drab.vercel.app/users", dataObject)
+            .post("http://localhost:3000/users", dataObject)
             .then(() => {
               Swal.fire({
                 position: "center",
